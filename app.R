@@ -90,11 +90,14 @@ experimentPage <- function(name){
 }
 
 # Define UI for application that draws a histogram
-ui <- navbarPage("MPRA-Data",
+ui <- fluidRow(id="canvas",
+        column(12,
+               navbarPage("MPRA-Data",
+                 theme = "mpra.css",
                  tabPanel("About",
                           h1("MPRA data access portal"),
                           hr(),
-                          htmlOutput("about")
+                          includeMarkdown("mrkdown/about.md")
                           ),
                  tabPanel("Promoter",
                           tabsetPanel(type = "tabs",id="promoterNavigation")
@@ -107,16 +110,30 @@ ui <- navbarPage("MPRA-Data",
                     
                             # Application title
                             hr(),
-                            mainPanel(
+                            fluidRow(
+                              column(4,
+                                     id="download_panel",
                                      selectInput("download_reference_all", "Genome release:",c("GRCh37","GRCh38")),
                                      selectInput("download_promoter", "Promoters:", promoters, multiple=TRUE, selectize=TRUE),
                                      selectInput("download_enhancer", "Enhancers:", enhancers, multiple=TRUE, selectize=TRUE),
                                      selectInput("download_format_all", "Format:",c(".tsv",".csv")),
                                      downloadButton("downloadData_selected", "Download Selected Elements"),
                                      downloadButton("downloadData_all", "Download All Elements")
+                                     
+                              ),
+                              column(8,
+                                     id="file_format",
+                                     includeMarkdown("mrkdown/file_format.md")
+                                     )
                             )
                           )
-         )
+                 )
+               )
+         ),
+        column(12,
+               id="footer",
+                "Terms and Conditions and the Online Privacy Statement of the University of Washington apply."
+        )
                  
 )
 
@@ -265,83 +282,9 @@ server <- function(input, output, session) {
   )
   
   ## ABOUT page right now simple HTML
-  output$about <- renderUI({
-    HTML('We selected 21 regulatory elements, including 20 commonly studied, 
-         disease-relevant promoter and enhancer sequences from the literature, and one ultraconserved enhancer (UC88). 
-         For the former, we focused primarily on regulatory sequences in which specific mutations are known to cause disease, 
-         both for their clinical relevance and to provide for positive control variants. 
-         Selected elements were limited to 600 base pairs (bp) for technical reasons related to the mapping of variants to 
-         barcodes by subassembly. In addition, we selected only sequences where cell line-based reporter assays were 
-         previously established. <br>
-        <h2>Promoter</h2>
-<style type="text/css">
-	table.tableizer-table {
-         font-size: 12px;
-         border: 1px solid #CCC; 
-         font-family: Arial, Helvetica, sans-serif;
-  } 
-         .tableizer-table td {
-         padding: 4px;
-         margin: 3px;
-         border: 1px solid #CCC;
-         }
-         .tableizer-table th {
-         background-color: #104E8B; 
-         color: #FFF;
-         font-weight: bold;
-         }
-         </style>
-         <table class="tableizer-table">
-<thead><tr class="tableizer-firstrow"><th>Name</th><th>Genomic coordinates (GRCh37/GRCh38)</th><th>Transcript</th><th>Associated Phenotype</th><th>Luciferase vector</th><th>MPRA vector</th><th>Cell line</th><th>Transf. time (hr)</th><th>Fold Ch.</th><th>Construct size (bp)</th></tr></thead><tbody>
- <tr><td>F9</td><td>X:138,612,622-138,612,924</td><td>NM_000133.3</td><td>Hemophilia B</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HepG2</td><td>24</td><td>2.6</td><td>303</td></tr>
- <tr><td>&nbsp;</td><td>X:139,530,463-139,530,765</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>FOXE1</td><td>9:100,615,537-100,616,136</td><td>NM_004473.3</td><td>Thyroid cancer</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HeLa</td><td>24</td><td>6.6</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>9:97,853,255-97,853,854</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>GP1BB</td><td>22:19,710,789-19,711,173</td><td>NM_000407.4</td><td>Bernard-Soulier Syndrome</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HEL 92.1.7</td><td>24</td><td>22.1</td><td>385</td></tr>
- <tr><td>&nbsp;</td><td>22:19,723,266-19,723,650</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>HBB</td><td>11:5,248,252-5,248,438</td><td>NM_000518.4</td><td>Thalassemia</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HEL 92.1.7</td><td>24</td><td>14.3</td><td>187</td></tr>
- <tr><td>&nbsp;</td><td>11:5,227,022-5,227,208</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>HBG1</td><td>11:5,271,035-5,271,308</td><td>NM_000559.2</td><td>Hereditary persistence of fetal hemoglobin</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HEL 92.1.7</td><td>24</td><td>118.1</td><td>274</td></tr>
- <tr><td>&nbsp;</td><td>11:5,249,805-5,250,078</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>HNF4A (P2)</td><td>20:42,984,160-42,984,444</td><td>NM_175914.4</td><td>Maturity-onset diabetes of the young (MODY)</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HEK293T</td><td>24</td><td>2.8</td><td>285</td></tr>
- <tr><td>&nbsp;</td><td>20:44,355,520-44,355,804</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>LDLR</td><td>19:11,199,907-11,200,224</td><td>NM_000527.4</td><td>Familial hypercholesterolemia</td><td>pGL4.11b</td><td>pGL4.11b</td><td>HepG2</td><td>24</td><td>110.7</td><td>318</td></tr>
- <tr><td>&nbsp;</td><td>19:11,089,231-11,089,548 </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>MSMB</td><td>10:51,548,988-51,549,578</td><td>NM_002443.3</td><td>Prostate cancer</td><td>pGL4.11b</td><td>pGL4.11c</td><td>HEK293T</td><td>24</td><td>8.4</td><td>593</td></tr>
- <tr><td>&nbsp;</td><td>10:46,046,244-46,046,834</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>PKLR</td><td>1:155,271,186-155,271,655</td><td>NM_000298.5</td><td>Pyruvate kinase deficiency</td><td>pGL4.11b</td><td>pGL4.11c</td><td>K562</td><td>48</td><td>29.4</td><td>470</td></tr>
- <tr><td>&nbsp;</td><td>1:155,301,395-155,301,864</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>TERT</td><td>5:1,295,104-1,295,362</td><td>NM_198253.2</td><td>Various types of cancer</td><td>pGL4.11b</td><td>pGL4.11b</td><td>HEK293T, GBM</td><td>24</td><td>231.8</td><td>259</td></tr>
- <tr><td>&nbsp;</td><td>5:1,294,989-1,295,247</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td></td></tr>
-</tbody></table>
-        <h2>Enhancer</h2>
-        <table class="tableizer-table">
-<thead><tr class="tableizer-firstrow"><th>Name</th><th>Genomic coordinates (GRCh37/GRCh38)</th><th>Associated Phenotype</th><th>Luciferase vector</th><th>MPRA vector</th><th>Cell line</th><th>Transf. time (hr)</th><th>Fold Ch.</th><th>Construct (bp)</th></tr></thead><tbody>
- <tr><td>BCL11A</td><td>2:60,722,075-60,722,674</td><td>Sickle cell disease </td><td>pGL4.23</td><td>pGL4.23d</td><td>HEL 92.1.7</td><td>24</td><td>2.5</td><td>600</td></tr>
- <tr><td>58</td><td>2:60,494,940-60,495,539</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>IRF4</td><td>6:396,143-396,593</td><td>Human pigmentation</td><td>pGL4.23</td><td>pGL4.23d</td><td>SK-MEL-28</td><td>24</td><td>44.5</td><td>451</td></tr>
- <tr><td>&nbsp;</td><td>6:396,143-396,593 </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>IRF6</td><td>1:209,989,135-209,989,735 </td><td>Cleft lip</td><td>pGL4.23</td><td>pGL4.23c</td><td>HaCaT</td><td>24</td><td>17</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>1:209,815,790-209,816,390</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>MYC (rs 6983267)</td><td>8:128,413,074-128,413,673</td><td>Various types of cancer </td><td>pGL4.23</td><td>pGL4.23c</td><td>HEK293T</td><td>32, 20nM LiCl added after 24hr</td><td>0.8</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>8:127,400,829-127,401,428</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>MYC (rs 11986220)</td><td>8:128,531,515-128,531,977</td><td>Various types of cancer </td><td>pGL4.23</td><td>pGL4.23d</td><td>LNCaP + 100nM DHT</td><td>24</td><td>5.5</td><td>464</td></tr>
- <tr><td>&nbsp;</td><td>8:127,519,270-127,519,732</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>RET </td><td>10:43,581,927-43,582,526</td><td>Hirschsprung</td><td>pGL3</td><td>pGL3c</td><td>Neuro-2a</td><td>24</td><td>2</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>10:43,086,479-43,087,078 </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>SORT1</td><td>1:109,817,274-109,817,873</td><td>Plasma low-density lipoprotein cholesterol & myocardial infraction</td><td>pGL4.23</td><td>pGL4.23</td><td>HepG2</td><td>24</td><td>235.3</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>1:109,274,652-109,275,251</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>TCF7L2 </td><td>10:114,757,999-114,758,598</td><td>Type 2 diabetes</td><td>pGL4.23</td><td>pGL4.23d</td><td>MIN6</td><td>24</td><td>9</td><td>600</td></tr>
- <tr><td>&nbsp;</td><td>10:112,998,240-112,998,839</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>UC88</td><td>2:162,094,919-162,095,508</td><td>-</td><td>pGL4.23</td><td>pGL4.23c</td><td>Neuro-2a</td><td>24</td><td>9.3</td><td>590</td></tr>
- <tr><td>&nbsp;</td><td>2:161,238,408-161,238,997 </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>ZFAND3</td><td>6:37,775,275-37,775,853</td><td>Type 2 diabetes</td><td>pGL4.23</td><td>pGL4.23c</td><td>MIN6</td><td>24</td><td>14.3</td><td>579</td></tr>
- <tr><td>&nbsp;</td><td>6:37,807,499-37,808,077 </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
- <tr><td>ZRS</td><td>7:156,583,813-156,584,297</td><td>Limb malformations</td><td>TATA-pGL4m(EV087)*</td><td>pGL4Zc</td><td>NIH/3T3</td><td>24</td><td>4.2</td><td>485</td></tr>
- <tr><td>&nbsp;</td><td>7:156,791,119-156,791,603</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td></td></tr>
-</tbody></table>
-         ')
-  })
+#  output$about <- renderUI({
+#    includeMarkdown("mrkdown/about.md")
+#  })
 }
 
 # Run the application 
