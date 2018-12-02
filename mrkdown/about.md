@@ -55,6 +55,10 @@ We selected 21 regulatory elements, including 20 commonly studied, disease-relev
 | ZRS               | 7:156,583,813-156,584,297           | Limb malformations                                                 | TATA-pGL4m(EV087)* | pGL4Zc      | NIH/3T3           | 24                             | 4.2      | 485            |
 |                   | 7:156,791,119-156,791,603           |                                                                    |                    |             |                   |                                |          |                |
 
+### Data usage
+
+We are making our data available prior to publication in line with  [Fort Lauderdale principle](https://www.genome.gov/pages/research/wellcomereport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. In addition, we also reserve the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of this data. 
+
 ### Contact
 
 For general information and specific questions about the experiment contact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bihealth.de). About the website please contact [Max Schubach](mailto:max.schubach@bihealth.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
@@ -64,5 +68,5 @@ For general information and specific questions about the experiment contact [Nad
 <img src="logos/bih.png", height="75">
 <img src="logos/ucsf.png", height="75">
 <img src="logos/uw.png", height="75">
-
 </p>
+
