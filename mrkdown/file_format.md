@@ -1,6 +1,6 @@
 ### Format description
 
-Variant files for each element are available for genome releases GRCh37 and GRCh38. Except of the chromosomal coordinates the files of the different releases are identical. Files are TAB (`.tsv`) or COMMA (`.csv`) separated, each row contains one variant, and they include a header. If a possible variant at a position is not shown it was not present in inserted through error-prone PCR in our target sequence and therefore not present in the final model for fitting. 
+Variant files for each element are available for genome releases GRCh37 and GRCh38. Except of the chromosomal coordinates the files of the different releases are identical. Files are TAB (`.tsv`) or COMMA (`.csv`) separated, each row contains one variant, and they include a header. If a possible variant at a position is not shown, it was not observed in the saturation mutagenesis library and therefore not present in the final model for fitting. 
 
 #### Columns
 
