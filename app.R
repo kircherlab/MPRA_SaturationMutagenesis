@@ -132,7 +132,7 @@ ui <- fluidRow(id="canvas",
          ),
         column(12,
                id="footer",
-                "Terms and Conditions and the Online Privacy Statement of the University of Washington apply."
+                HTML('<a href="https://www.washington.edu/online/terms">Terms and Conditions</a> and the <a href="https://www.washington.edu/online/privacy">Online Privacy Statement</a> of the University of Washington apply.')
         )
                  
 )
@@ -160,8 +160,8 @@ renderElement <- function(name,release,barcodes, threshold, deletions, range, ou
         data <- data %>% filter(Pos >= range[1] & Pos <= range[2])
       }
       # render the table with the data
-      output[[paste0(name,"_table")]] <- renderDT(data, rownames = FALSE, 
-                                                  colnames = c('Chromosome', 'Posistion', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
+      output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top", 
+                                                  colnames = c('Chromosome', 'Position', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
       
       # plot the data. here the helper   modify.filterdata is used to filter the data (from plots.R
       # and the function getPlot from the same source to plot the ggplot

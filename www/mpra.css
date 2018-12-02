@@ -9,10 +9,6 @@ th {
 }
 tr:hover {background-color: rgb(245, 245, 245);}
 
-img[src*='#logo'] {
-    height: 50px;
-}
-
 #download_panel {
   padding-right: 0px;
 }
