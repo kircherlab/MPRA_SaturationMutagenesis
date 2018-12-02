@@ -44,7 +44,7 @@ We selected 21 regulatory elements, including 20 commonly studied, disease-relev
 |                   | 8:127,519,270-127,519,732           |                                                                    |                    |             |                   |                                |          |                |
 | RET               | 10:43,581,927-43,582,526            | Hirschsprung                                                       | pGL3               | pGL3c       | Neuro-2a          | 24                             | 2        | 600            |
 |                   | 10:43,086,479-43,087,078            |                                                                    |                    |             |                   |                                |          |                |
-| SORT1             | 1:109,817,274-109,817,873           | Plasma low-density lipoprotein cholesterol & myocardial infraction | pGL4.23            | pGL4.23     | HepG2             | 24                             | 235.3    | 600            |
+| SORT1             | 1:109,817,274-109,817,873           | Plasma low-density lipoprotein cholesterol & myocardial infraction | pGL4.23            | pGL4.23c    | HepG2             | 24                             | 235.3    | 600            |
 |                   | 1:109,274,652-109,275,251           |                                                                    |                    |             |                   |                                |          |                |
 | TCF7L2            | 10:114,757,999-114,758,598          | Type 2 diabetes                                                    | pGL4.23            | pGL4.23d    | MIN6              | 24                             | 9        | 600            |
 |                   | 10:112,998,240-112,998,839          |                                                                    |                    |             |                   |                                |          |                |
@@ -57,9 +57,12 @@ We selected 21 regulatory elements, including 20 commonly studied, disease-relev
 
 ### Contact
 
-For general information and specific questions about the experiment conact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu]). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bihealth.de). About the website please contact [Max Schubach](mailto:max.schubach@bihealth.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
+For general information and specific questions about the experiment contact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bihealth.de). About the website please contact [Max Schubach](mailto:max.schubach@bihealth.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
 
+<p style="text-align: center;">
 
-![BIH](https://www.bihealth.org/typo3conf/ext/dreipc_bih/Resources/Public/Frontend/assets/Image/logo_bihealth_en.png#logo)
-![UCSF](https://www.ucsf.edu/sites/all/themes/ucsf_base/logo.png#logo)
-![UW](https://upload.wikimedia.org/wikipedia/en/thumb/5/58/University_of_Washington_seal.svg/1024px-University_of_Washington_seal.svg.png#logo)
+<img src="logos/bih.png", height="75">
+<img src="logos/ucsf.png", height="75">
+<img src="logos/uw.png", height="75">
+
+</p>
