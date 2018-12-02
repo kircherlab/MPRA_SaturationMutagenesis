@@ -76,7 +76,25 @@ experimentPage <- function(name){
                  mainPanel(
                    tabsetPanel(type = "tabs",
                                # table View using DT table
-                               tabPanel("Variant table",DTOutput(paste0(name,'_table'))),
+                               tabPanel("Variant table",
+                                        fluidRow(
+                                          column(12,
+                                            DTOutput(paste0(name,'_table'))
+                                          ),
+                                          column(12,id="firefox_warning",
+                                                 tags$script(HTML('
+                                            //Javascript
+                                            var FIREFOX = /Firefox/i.test(navigator.userAgent);
+                                            
+                                            if (FIREFOX) {
+                                              document.getElementById("firefox_warning").style.color="red";
+                                            }
+                                            ')),
+                                                 "We have some problems visualizing the variant table in Firefox or Edge correctly. 
+                                                 If you cannot see the variant table please use the Chrome browser."
+                                           )
+                                        )
+                              ),
                                # Plot View using ggplot
                                tabPanel("Variant plot", plotOutput(paste0(name,'_plot'))
                     )

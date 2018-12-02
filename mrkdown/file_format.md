@@ -13,3 +13,7 @@ Variant files for each element are available for genome releases GRCh37 and GRCh
 **RNA** - Count of RNA sequences that contain the variant (used for fitting the linear model).  
 **Value** - Log2 variant expression effect derived from the fit of the linear model (coefficient).  
 **P-Value** - P-value of the coefficient.
+
+### Data usage
+
+We are making our data available prior to publication in line with  [Fort Lauderdale principle](https://www.genome.gov/pages/research/wellcomereport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. In addition, we also reserve the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of this data. 
