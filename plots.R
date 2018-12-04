@@ -5,16 +5,16 @@ library(stringr)
 
 standard_SatMut_region_style <- function() {
   ## styles
-  size.text = 15;
-  size.title = 20;
-  size.line = 1;
-  size.geom_line = 2;
-  size.geom_point = 4
+  size.text = 10;
+  size.title = 12;
+  size.line = 1.2;
+  size.geom_line = 1;
+  size.geom_point = 2
   standard_style <- theme_bw() + theme(plot.title = element_text(size = size.title, face="bold",hjust = 0.5),
                                        panel.grid.major = element_blank() , panel.grid.minor = element_blank(), panel.border = element_blank(),
                                        axis.text = element_text(colour = "black",size=size.text), axis.title = element_text(colour = "black",size=size.title), axis.ticks = element_line(colour = "black", size=1), axis.line.y = element_line(color="black", size = size.line), axis.line = element_line(colour = "black", size=size.line),
                                        legend.key =  element_blank(), legend.text = element_text(size=size.text),
-                                       legend.direction="horizontal", legend.position="top", legend.box.just = "left",  legend.background = element_rect(fill = "transparent", colour = "transparent"), legend.margin = margin(0, 0, 0, 0),
+                                        legend.position="top", legend.box.just = "left",  legend.background = element_rect(fill = "transparent", colour = "transparent"), legend.margin = margin(0, 0, 0, 0),
                                        legend.key.size = unit(2, 'lines'), legend.title=element_text(size=size.text))+
     theme(axis.line.x = element_line(color="black", size = size.line))
 }
@@ -51,13 +51,13 @@ getPlot <- function(data,name, release) {
   altBreaks<-c(as.character(alts), sigs)
   
   chr <- data$Chr %>% unique()
-
+  data <- data %>% select(printpos,Coefficient,significance,Alt,Ref) %>% dplyr::rename(Position=printpos)
   p <- ggplot() +
-    geom_segment(data = data, aes(x=printpos, xend=printpos,y=0,yend=Coefficient, colour=significance), size=1, show.legend = TRUE) +
-    geom_point(data= data, aes(x=printpos,y=Coefficient,colour=Alt, shape=Ref), size=3, show.legend = TRUE) +
-    scale_shape_manual("Reference:",values=aesRefsValues, guide=guide_legend(override.aes = list(size=7, linetype=0, shape=aesRefsShape),nrow=2)) +
-    scale_colour_manual("Alternative:", values = colours, breaks=altBreaks, labels=altBreaks,
-                        guide= guide_legend(override.aes = list(size=aesSize, linetype=aesLine, shape=aesShape),nrow=2)) +
+    geom_segment(data = data, aes(x=Position, xend=Position,y=0,yend=Coefficient, colour=significance), size=0.3, show.legend = TRUE) +
+    geom_point(data= data, aes(x=Position,y=Coefficient,colour=Alt, shape=Ref), size=1, show.legend = TRUE) +
+    scale_shape_manual("",values=aesRefsValues, guide=guide_legend(override.aes = list(size=1, linetype=0, shape=aesRefsShape),nrow=2)) +
+    scale_colour_manual("", values = colours, breaks=altBreaks, labels=altBreaks,
+                        guide= guide_legend(override.aes = list(size=aesSize, linetype=aesLine, shape=aesShape))) +
     ggtitle(name) + labs(x = paste0("Chromosome ",chr," (",release,")"), y= "Log2 variant effect") + standard_SatMut_region_style()
   return(p)
 }

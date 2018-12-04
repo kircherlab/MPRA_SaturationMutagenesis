@@ -17,6 +17,7 @@ library(dplyr)
 library(ggplot2)
 library(readr)
 library(stringr)
+library(plotly)
 # import plots.R for visualisations
 source("plots.R")
 
@@ -62,7 +63,7 @@ experimentPage <- function(name){
                    selectInput(paste0(name,'_reference'), "Genome Release:",c("GRCh37","GRCh38")),
                    # Filtering
                    h3("Filter"),
-                   checkboxInput(paste0(name,'_deletions'), "Deletions", value = TRUE),
+                   checkboxInput(paste0(name,'_deletions'), "With 1 bp deletions", value = TRUE),
                    # Seperate panel to select significance level (for plots)
                    wellPanel(
                     h4("Significance level"),
@@ -79,7 +80,7 @@ experimentPage <- function(name){
                                tabPanel("Variant table",
                                         fluidRow(
                                           column(12,
-                                            DTOutput(paste0(name,'_table'))
+                                            DT::DTOutput(paste0(name,'_table'))
                                           ),
                                           column(12,id="firefox_warning",
                                                  tags$script(HTML('
@@ -96,7 +97,7 @@ experimentPage <- function(name){
                                         )
                               ),
                                # Plot View using ggplot
-                               tabPanel("Variant plot", plotOutput(paste0(name,'_plot'))
+                               tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot'))
                     )
                   )
                 )
@@ -178,14 +179,20 @@ renderElement <- function(name,release,barcodes, threshold, deletions, range, ou
         data <- data %>% filter(Pos >= range[1] & Pos <= range[2])
       }
       # render the table with the data
-      output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top", 
+      output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top",
+                                                  options = list(lengthMenu = list(c(25,50, 100, 500, 1000, -1), list('25', '50', '100','500','1000', 'All'))),
                                                   colnames = c('Chromosome', 'Position', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
       
       # plot the data. here the helper   modify.filterdata is used to filter the data (from plots.R
       # and the function getPlot from the same source to plot the ggplot
       plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
       if (plotData %>% nrow > 0) {
-        output[[paste0(name,"_plot")]] <- renderPlot(getPlot(plotData,name,release))
+        output[[paste0(name,"_plot")]] <- renderPlotly({
+          p <- getPlot(plotData,name,release)
+            ggplotly(p) %>% 
+              layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
+              config(displayModeBar = F)
+          })
       }
     }
   }
