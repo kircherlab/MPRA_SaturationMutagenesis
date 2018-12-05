@@ -64,11 +64,11 @@ experimentPage <- function(name){
                    # Filtering
                    h3("Filter"),
                    checkboxInput(paste0(name,'_deletions'), "With 1 bp deletions", value = TRUE),
+                   numericInput(paste0(name,'_barcodes'), "Minimum Tags:",10,min=0,step=1),
                    # Seperate panel to select significance level (for plots)
                    wellPanel(
-                    h4("Significance level"),
-                   numericInput(paste0(name,'_pvalue'), "P-Value:",1e-5,min=1e-5,max=1.0),
-                   numericInput(paste0(name,'_barcodes'), "Minimum Tags:",10,min=0,step=1)
+                     h4("Significance level"),
+                     numericInput(paste0(name,'_pvalue'), "P-Value:",1e-5,min=1e-5,max=1.0)
                    ),
                    sliderInput(paste0(name,"_region"), "Region", min=0, max=100, value=c(0,100), step = 1)#,
                    #actionButton(paste0(name,"_filter"),"Filter")
