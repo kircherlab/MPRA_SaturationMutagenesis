@@ -12,6 +12,7 @@
 
 # Required libraries
 library(shiny)
+library(htmlwidgets)
 library(DT)
 library(dplyr)
 library(ggplot2)
@@ -46,67 +47,6 @@ for (name in elements$Element) {
 }
 
 
-# The list of different experiments is dynamic. 
-# This function creates different tabs for an element with asidebar panel for filtering
-# and a main panel with Tabset table view and Plot. It is debendend on the name element
-experimentPage <- function(name){
-  tabPanel(name,
-           fluidPage(
-             
-             # Application title
-             headerPanel(name),
-             mainPanel(
-               sidebarLayout(
-                 # User inputs
-                 sidebarPanel(
-                   # Genome release
-                   selectInput(paste0(name,'_reference'), "Genome Release:",c("GRCh37","GRCh38")),
-                   # Filtering
-                   h3("Filter"),
-                   checkboxInput(paste0(name,'_deletions'), "With 1 bp deletions", value = TRUE),
-                   numericInput(paste0(name,'_barcodes'), "Minimum Tags:",10,min=0,step=1),
-                   # Seperate panel to select significance level (for plots)
-                   wellPanel(
-                     h4("Significance level"),
-                     numericInput(paste0(name,'_pvalue'), "P-Value:",1e-5,min=1e-5,max=1.0)
-                   ),
-                   sliderInput(paste0(name,"_region"), "Region", min=0, max=100, value=c(0,100), step = 1)#,
-                   #actionButton(paste0(name,"_filter"),"Filter")
-                 ),
-                 # Main panel for tab view and plot view
-                 mainPanel(
-                   tabsetPanel(type = "tabs",
-                               # table View using DT table
-                               tabPanel("Variant table",
-                                        fluidRow(
-                                          column(12,
-                                            DT::DTOutput(paste0(name,'_table'))
-                                          ),
-                                          column(12,id="firefox_warning",
-                                                 tags$script(HTML('
-                                            //Javascript
-                                            var FIREFOX = /Firefox/i.test(navigator.userAgent);
-                                            
-                                            if (FIREFOX) {
-                                              document.getElementById("firefox_warning").style.color="red";
-                                            }
-                                            ')),
-                                                 "We have some problems visualizing the variant table in Firefox or Edge correctly. 
-                                                 If you cannot see the variant table please use the Chrome browser."
-                                           )
-                                        )
-                              ),
-                               # Plot View using ggplot
-                               tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot'))
-                    )
-                  )
-                )
-                          
-              )
-             )
-           )
-  )
-}
 
 # Define UI for application that draws a histogram
 ui <- fluidRow(id="canvas",
@@ -119,8 +59,7 @@ ui <- fluidRow(id="canvas",
                           includeMarkdown("mrkdown/about.md")
                           ),
                  tabPanel("Promoter",
-                          tabsetPanel(type = "tabs",id="promoterNavigation")
-                 ),
+                          tabsetPanel(type = "tabs", id="promoterNavigation")),
                  tabPanel("Enhancer",
                           tabsetPanel(type = "tabs",id="enhancerNavigation")),
                  tabPanel("Download", 
@@ -152,68 +91,134 @@ ui <- fluidRow(id="canvas",
         column(12,
                id="footer",
                 HTML('<a href="https://www.washington.edu/online/terms">Terms and Conditions</a> and the <a href="https://www.washington.edu/online/privacy">Online Privacy Statement</a> of the University of Washington apply.')
-        )
-                 
+        )   
 )
 
 
-# function to render the table/plot for a specific selected element (by name)
-# is dependend on the release, barcodes, p-value threshsold, true/false deletions, 
-# range of the plot and needs output and session element
-renderElement <- function(name,release,barcodes, threshold, deletions, range, output,session) {
-  # check first if elements are not null
-  if(!is.null(release) & !is.null(barcodes) & !is.null(threshold)) {
-    # values cannot be NA (possible if out of range is selected, like <1 barcoded)
-    if (!is.na(threshold) & !is.na(barcodes) & threshold > 0 & barcodes > 0) {
-      # get name depeneded data and filter on release
-      data_general <- data_tables[[name]] %>% filter(Release==release)
-      # filter on barcodes as well as pvalue for the table, remove not needed rows
-      data <- data_general %>% filter(Barcodes >= barcodes) %>% filter(pValue < threshold) %>%  
-        select(-Element,-Release)
-      # remove deletions if unselected
-      if (!deletions) {
-        data <- data %>% filter(Alt != "-")
-      }
-      # filter down to range if selected
-      if (!is.null(range)) {
-        data <- data %>% filter(Pos >= range[1] & Pos <= range[2])
-      }
-      # render the table with the data
-      output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top",
-                                                  options = list(lengthMenu = list(c(25,50, 100, 500, 1000, -1), list('25', '50', '100','500','1000', 'All'))),
-                                                  colnames = c('Chromosome', 'Position', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
-      
-      # plot the data. here the helper   modify.filterdata is used to filter the data (from plots.R
-      # and the function getPlot from the same source to plot the ggplot
-      plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
-      if (plotData %>% nrow > 0) {
-        output[[paste0(name,"_plot")]] <- renderPlotly({
-          p <- getPlot(plotData,name,release)
+
+
+
+# Define server logic required for this website
+server <- function(input, output, session) {
+  
+  # The list of different experiments is dynamic. 
+  # This function creates different tabs for an element with asidebar panel for filtering
+  # and a main panel with Tabset table view and Plot. It is debendend on the name element
+  experimentPage <- function(name){
+    panel <- tabPanel(name,
+             fluidPage(
+               
+               # Application title
+               headerPanel(name),
+               mainPanel(
+                 sidebarLayout(
+                   # User inputs
+                   sidebarPanel(
+                     # Genome release
+                     selectInput(paste0(name,'_reference'), "Genome Release:",c("GRCh37","GRCh38")),
+                     # Filtering
+                     h3("Filter"),
+                     checkboxInput(paste0(name,'_deletions'), "With 1 bp deletions", value = TRUE),
+                     numericInput(paste0(name,'_barcodes'), "Minimum Tags:",10,min=0,step=1),
+                     # Seperate panel to select significance level (for plots)
+                     wellPanel(
+                       h4("Significance level"),
+                       numericInput(paste0(name,'_pvalue'), "P-Value:",1e-5,min=1e-5,max=1.0)
+                     ),
+                     sliderInput(paste0(name,"_region"), "Region", min=0, max=100, value=c(0,100), step = 1)#,
+                     #actionButton(paste0(name,"_filter"),"Filter")
+                   ),
+                   # Main panel for tab view and plot view
+                   mainPanel(
+                     tabsetPanel(type = "tabs",
+                                 # table View using DT table
+                                 tabPanel("Variant table",
+                                          fluidRow(
+                                            column(12,
+                                                   DT::DTOutput(paste0(name,'_table'))
+                                            ),
+                                            column(12,id="firefox_warning",
+                                                   tags$script(HTML('
+                                            //Javascript
+                                            var FIREFOX = /Firefox/i.test(navigator.userAgent);
+                                            
+                                            if (FIREFOX) {
+                                              document.getElementById("firefox_warning").style.color="red";
+                                            }
+                                            ')),
+                                                   "We have some problems visualizing the variant table in Firefox or Edge correctly. 
+                                                 If you cannot see the variant table please use the Chrome browser."
+                                            )
+                                          )
+                                 ),
+                                 # Plot View using ggplot
+                                 tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot'))
+                                 )
+                     )
+                   )
+                   
+                 )
+               )
+             )
+    )
+    return(panel)
+  }
+  
+  # function to render the table/plot for a specific selected element (by name)
+  # is dependend on the release, barcodes, p-value threshsold, true/false deletions, 
+  # range of the plot and needs output and session element
+  renderElement <- function(name,release,barcodes, threshold, deletions, range, output,session) {
+    # check first if elements are not null
+    if(!is.null(release) & !is.null(barcodes) & !is.null(threshold)) {
+      # values cannot be NA (possible if out of range is selected, like <1 barcoded)
+      if (!is.na(threshold) & !is.na(barcodes) & threshold > 0 & barcodes > 0) {
+        # get name depeneded data and filter on release
+        data_general <- data_tables[[name]] %>% filter(Release==release)
+        # filter on barcodes as well as pvalue for the table, remove not needed rows
+        data <- data_general %>% filter(Barcodes >= barcodes) %>% filter(pValue < threshold) %>%  
+          select(-Element,-Release)
+        # remove deletions if unselected
+        if (!deletions) {
+          data <- data %>% filter(Alt != "-")
+        }
+        # filter down to range if selected
+        if (!is.null(range)) {
+          data <- data %>% filter(Pos >= range[1] & Pos <= range[2])
+        }
+        # render the table with the data
+        output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top",
+                                                        options = list(lengthMenu = list(c(25,50, 100, 500, 1000, -1), list('25', '50', '100','500','1000', 'All'))),
+                                                        colnames = c('Chromosome', 'Position', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
+        
+        # plot the data. here the helper   modify.filterdata is used to filter the data (from plots.R
+        # and the function getPlot from the same source to plot the ggplot
+        plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
+        if (plotData %>% nrow > 0) {
+          output[[paste0(name,"_plot")]] <- renderPlotly({
+            p <- getPlot(plotData,name,release)
             ggplotly(p) %>% 
               layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
               config(displayModeBar = F)
           })
+        }
       }
     }
   }
-}
-
-
-# update the slider. We have to set the min/max of a slider depending on the element and on the selected genome release
-updateRegionSlider <- function(session, id, name, release) {
-  # always check if release is not NULL
-  if(!is.null(release)) {
-    # filter data on release and get min/max
-    data <- data_tables[[name]] %>% filter(Release==release)
-    min <- min(data$Pos)
-    max <- max(data$Pos)
-    
-    updateSliderInput(session, id, value = c(min,max), min=min, max=max, step=1)
+  
+  # update the slider. We have to set the min/max of a slider depending on the element and on the selected genome release
+  updateRegionSlider <- function(session, id, name, release) {
+    # always check if release is not NULL
+    if(!is.null(release)) {
+      # filter data on release and get min/max
+      data <- data_tables[[name]] %>% filter(Release==release)
+      min <- min(data$Pos)
+      max <- max(data$Pos)
+      
+      updateSliderInput(session, id, value = c(min,max), min=min, max=max, step=1)
+    }
   }
-}
-
-# Define server logic required for this website
-server <- function(input, output, session) {
+  
+  #############################
   
   # need to store the selected genome release here to update min/max if needed
   session$userData$actualSelectedRelease <- list()
