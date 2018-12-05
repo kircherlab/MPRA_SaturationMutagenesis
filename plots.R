@@ -21,7 +21,8 @@ standard_SatMut_region_style <- function() {
 
 modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, range=NULL) {
   data <- data %>% select(Chrom,Pos,Ref,Alt,Barcodes, Coefficient, pValue) %>%
-    mutate(significance=if_else(pValue<threshold & Barcodes >= barcodes,"Significant", "Not significant")) %>%
+    filter(Barcodes >= barcodes) %>% 
+    mutate(significance=if_else(pValue<threshold,"Significant", "Not significant")) %>%
     mutate(printpos=if_else(Alt=="A",as.double(Pos)-0.4,if_else(Alt=="T",as.double(Pos)-0.2, if_else(Alt=="G",as.double(Pos)+0.0,if_else(Alt=="C",as.double(Pos)+0.2,as.double(Pos)+0.4)))))
   if (!deletions) {
     data <- data %>% filter(Alt != "-")

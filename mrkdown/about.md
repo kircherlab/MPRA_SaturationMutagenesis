@@ -32,7 +32,7 @@ We selected 21 regulatory elements, including 20 commonly studied, disease-relev
 | TCF7L2            | chr10:114,757,999-114,758,598 | chr10:112,998,240-112,998,839 | Type 2 diabetes                                                    | pGL4.23             | pGL4.23d    | MIN6                                | 24                             | 9                       | 2.7                | 600                 |
 | UC88              | chr2:162,094,919-162,095,508  | chr2:161,238,408-161,238,997  | -                                                                  | pGL4.23             | pGL4.23c    | Neuro-2a                            | 24                             | 9.3                     | 5.4                | 590                 |
 | ZFAND3            | chr6:37,775,275-37,775,853    | chr6:37,807,499-37,808,077    | Type 2 diabetes                                                    | pGL4.23             | pGL4.23c    | MIN6                                | 24                             | 14.3                    | 7.3                | 579                 |
-| ZRS               | chr7:156,583,813-156,584,297  | chr7:156,791,119-156,791,603  | Limb malformations                                                 | TATA-pGL4m (EV087)* | pGL4Zc      | NIH/3T3 (with HOXD13/ HOXD13+HAND2) | 24                             | 04.02.2002              | 3.7/2.6            | 485                 |
+| ZRS               | chr7:156,583,813-156,584,297  | chr7:156,791,119-156,791,603  | Limb malformations                                                 | TATA-pGL4m (EV087) | pGL4Zc      | NIH/3T3 (with HOXD13/ HOXD13+HAND2) | 24                             | 04.02.2002              | 3.7/2.6            | 485                 |
 
 ### Data usage
 
