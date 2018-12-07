@@ -110,10 +110,10 @@ server <- function(input, output, session) {
                
                # Application title
                headerPanel(name),
-               mainPanel(
+               #mainPanel(
                  sidebarLayout(
                    # User inputs
-                   sidebarPanel(
+                   sidebarPanel(width=3,
                      # Genome release
                      selectInput(paste0(name,'_reference'), "Genome Release:",c("GRCh37","GRCh38")),
                      # Filtering
@@ -129,28 +129,12 @@ server <- function(input, output, session) {
                      #actionButton(paste0(name,"_filter"),"Filter")
                    ),
                    # Main panel for tab view and plot view
-                   mainPanel(
+                   mainPanel(width=9,
                      tabsetPanel(type = "tabs",
                                  # table View using DT table
                                  tabPanel("Variant table",
-                                          fluidRow(
-                                            column(12,
                                                    DT::DTOutput(paste0(name,'_table'))
-                                            ),
-                                            column(12,id="firefox_warning",
-                                                   tags$script(HTML('
-                                            //Javascript
-                                            var FIREFOX = /Firefox/i.test(navigator.userAgent);
-                                            
-                                            if (FIREFOX) {
-                                              document.getElementById("firefox_warning").style.color="red";
-                                            }
-                                            ')),
-                                                   "We have some problems visualizing the variant table in Firefox or Edge correctly. 
-                                                 If you cannot see the variant table please use the Chrome browser."
-                                            )
-                                          )
-                                 ),
+                                  ),
                                  # Plot View using ggplot
                                  tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot'))
                                  )
@@ -158,7 +142,7 @@ server <- function(input, output, session) {
                    )
                    
                  )
-               )
+               #)
              )
     )
     return(panel)
