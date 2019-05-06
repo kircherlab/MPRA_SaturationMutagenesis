@@ -34,9 +34,16 @@ modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, 
 }
 
 
-getPlot <- function(data,name, release) {
-  colours=c("A"="#0f9447","C"="#235c99","T"="#d42638","G"="#f5b328","-"="#cccccc", 
-            "Significant"="#005500","Not significant"="red")
+defaultColours=c("A"="#0f9447","C"="#235c99","T"="#d42638","G"="#f5b328","-"="#cccccc", 
+                         "Significant"="#005500","Not significant"="red")
+colorblindColors=c("A"="#1B9E77","C"="#7570B3","T"="#D95F02","G"="#E6AB02","-"="#A6761D", 
+                   "Significant"="#66A61E","Not significant"="#E7298A")
+getPlot <- function(data,name, release, colourPalette="default") {
+  colours <- defaultColours
+  if (colourPalette == "colorblind") {
+    colours <- colorblindColors
+  }
+  
   refs <- data$Ref %>% unique()
   aesRefsValues <- c(if_else("A" %in% refs,15,c()),if_else("C" %in% refs,16,c()),if_else("G" %in% refs,17,c()),if_else("T" %in% refs,18,c()))
   aesRefsShape <- c(if_else("A" %in% refs,0,c()),if_else("C" %in% refs,1,c()),if_else("G" %in% refs,2,c()),if_else("T" %in% refs,5,c()))

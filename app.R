@@ -136,7 +136,8 @@ server <- function(input, output, session) {
                                                    DT::DTOutput(paste0(name,'_table'))
                                   ),
                                  # Plot View using ggplot
-                                 tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot'))
+                                 tabPanel("Variant plot", plotlyOutput(paste0(name,'_plot')),
+                                                          checkboxInput(paste0(name,"_colorblind"), "Colorblind visualization", value = FALSE)
                                  )
                      )
                    )
@@ -151,7 +152,7 @@ server <- function(input, output, session) {
   # function to render the table/plot for a specific selected element (by name)
   # is dependend on the release, barcodes, p-value threshsold, true/false deletions, 
   # range of the plot and needs output and session element
-  renderElement <- function(name,release,barcodes, threshold, deletions, range, output,session) {
+  renderElement <- function(name,release,barcodes, threshold, deletions, range, output,session, colorPalette) {
     # check first if elements are not null
     if(!is.null(release) & !is.null(barcodes) & !is.null(threshold)) {
       # values cannot be NA (possible if out of range is selected, like <1 barcoded)
@@ -179,7 +180,7 @@ server <- function(input, output, session) {
         plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
         if (plotData %>% nrow > 0) {
           output[[paste0(name,"_plot")]] <- renderPlotly({
-            p <- getPlot(plotData,name,release)
+            p <- getPlot(plotData,name,release,colorPalette)
             ggplotly(p) %>% 
               layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
               config(displayModeBar = F)
@@ -213,7 +214,7 @@ server <- function(input, output, session) {
     isolate({
       appendTab("promoterNavigation", experimentPage(name))
       updateRegionSlider(session, paste0(name,"_region"), name, "GRCh37")
-      renderElement(name,"GRCh37",10,1e-5,TRUE,NULL,output,session)
+      renderElement(name,"GRCh37",10,1e-5,TRUE,NULL,output,session, "default")
     })
   }
   for (name in enhancers$Element){
@@ -221,7 +222,7 @@ server <- function(input, output, session) {
     isolate({
       appendTab("enhancerNavigation", experimentPage(name))
       updateRegionSlider(session, paste0(name,"_region"), name, "GRCh37")
-      renderElement(name,"GRCh37",10,1e-5,TRUE,NULL,output,session)
+      renderElement(name,"GRCh37",10,1e-5,TRUE,NULL,output,session,"default")
     })
   }
   
@@ -239,8 +240,13 @@ server <- function(input, output, session) {
         release <- input[[paste0(name,"_reference")]]
         barcodes <- input[[paste0(name,"_barcodes")]]
         pValue <- input[[paste0(name,"_pvalue")]]
+        
         deletions <- input[[paste0(name,"_deletions")]]
         
+        colorPalette <- "default"
+        if(!is.null(input[[paste0(name,"_colorblind")]]) && input[[paste0(name,"_colorblind")]]) {
+          colorPalette <- "colorblind"
+        }
         
         # update the slider if the release changed
         if (!is.null(release) && session$userData$actualSelectedRelease[[name]] != release) {
@@ -250,7 +256,7 @@ server <- function(input, output, session) {
         # update data table and plot
         range <- input[[paste0(name,"_region")]]
         isolate({
-          renderElement(name,release,barcodes,pValue,deletions,range,output,session)
+          renderElement(name,release,barcodes,pValue,deletions,range,output,session,colorPalette)
         })
       }
     })
