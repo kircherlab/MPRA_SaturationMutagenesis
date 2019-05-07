@@ -40,7 +40,9 @@ colorblindColors=c("A"="#1B9E77","C"="#7570B3","T"="#D95F02","G"="#E6AB02","-"="
                    "Significant"="#66A61E","Not significant"="#E7298A")
 getPlot <- function(data,name, release, colourPalette="default") {
   colours <- defaultColours
+  
   if (colourPalette == "colorblind") {
+    print(colourPalette)
     colours <- colorblindColors
   }
   

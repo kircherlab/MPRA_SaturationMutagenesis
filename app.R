@@ -179,11 +179,13 @@ server <- function(input, output, session) {
         # and the function getPlot from the same source to plot the ggplot
         plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
         if (plotData %>% nrow > 0) {
+          isolate({
           output[[paste0(name,"_plot")]] <- renderPlotly({
             p <- getPlot(plotData,name,release,colorPalette)
             ggplotly(p) %>% 
               layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
               config(displayModeBar = F)
+          },quoted = TRUE)
           })
         }
       }
@@ -243,9 +245,12 @@ server <- function(input, output, session) {
         
         deletions <- input[[paste0(name,"_deletions")]]
         
-        colorPalette <- "default"
-        if(!is.null(input[[paste0(name,"_colorblind")]]) && input[[paste0(name,"_colorblind")]]) {
+        colorblind <- input[[paste0(name,"_colorblind")]]
+        
+        if(!is.null(colorblind) && colorblind) {
           colorPalette <- "colorblind"
+        } else {
+          colorPalette <- "default"
         }
         
         # update the slider if the release changed
