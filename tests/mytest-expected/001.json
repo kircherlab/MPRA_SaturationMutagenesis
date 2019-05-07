@@ -7,8 +7,8 @@
     "BCL11A_reference": "GRCh37",
     "BCL11A_reference-selectized": "",
     "BCL11A_region": [
-      60722075,
-      60722674
+      0,
+      100
     ],
     "download_enhancer": null,
     "download_enhancer-selectized": "",
@@ -26,8 +26,8 @@
     "F9_reference": "GRCh37",
     "F9_reference-selectized": "",
     "F9_region": [
-      138612622,
-      138612924
+      0,
+      100
     ],
     "FOXE1_barcodes": 10,
     "FOXE1_colorblind": false,
@@ -36,8 +36,8 @@
     "FOXE1_reference": "GRCh37",
     "FOXE1_reference-selectized": "",
     "FOXE1_region": [
-      100615537,
-      100616136
+      0,
+      100
     ],
     "GP1BA_barcodes": 10,
     "GP1BA_colorblind": false,
@@ -46,8 +46,8 @@
     "GP1BA_reference": "GRCh37",
     "GP1BA_reference-selectized": "",
     "GP1BA_region": [
-      19710789,
-      19711173
+      0,
+      100
     ],
     "HBB_barcodes": 10,
     "HBB_colorblind": false,
@@ -56,8 +56,8 @@
     "HBB_reference": "GRCh37",
     "HBB_reference-selectized": "",
     "HBB_region": [
-      5248252,
-      5248438
+      0,
+      100
     ],
     "HBG1_barcodes": 10,
     "HBG1_colorblind": false,
@@ -66,8 +66,8 @@
     "HBG1_reference": "GRCh37",
     "HBG1_reference-selectized": "",
     "HBG1_region": [
-      5271035,
-      5271308
+      0,
+      100
     ],
     "HNF4A_barcodes": 10,
     "HNF4A_colorblind": false,
@@ -76,8 +76,8 @@
     "HNF4A_reference": "GRCh37",
     "HNF4A_reference-selectized": "",
     "HNF4A_region": [
-      42984160,
-      42984444
+      0,
+      100
     ],
     "IRF4_barcodes": 10,
     "IRF4_colorblind": false,
@@ -86,8 +86,8 @@
     "IRF4_reference": "GRCh37",
     "IRF4_reference-selectized": "",
     "IRF4_region": [
-      396143,
-      396593
+      0,
+      100
     ],
     "IRF6_barcodes": 10,
     "IRF6_colorblind": false,
@@ -96,8 +96,8 @@
     "IRF6_reference": "GRCh37",
     "IRF6_reference-selectized": "",
     "IRF6_region": [
-      209989135,
-      209989735
+      0,
+      100
     ],
     "LDLR_barcodes": 10,
     "LDLR_colorblind": false,
@@ -106,8 +106,8 @@
     "LDLR_reference": "GRCh37",
     "LDLR_reference-selectized": "",
     "LDLR_region": [
-      11199907,
-      11200224
+      0,
+      100
     ],
     "LDLR.2_barcodes": 10,
     "LDLR.2_colorblind": false,
@@ -116,8 +116,8 @@
     "LDLR.2_reference": "GRCh37",
     "LDLR.2_reference-selectized": "",
     "LDLR.2_region": [
-      11199907,
-      11200224
+      0,
+      100
     ],
     "MSMB_barcodes": 10,
     "MSMB_colorblind": false,
@@ -126,8 +126,8 @@
     "MSMB_reference": "GRCh37",
     "MSMB_reference-selectized": "",
     "MSMB_region": [
-      51548988,
-      51549578
+      0,
+      100
     ],
     "MYCrs11986220_barcodes": 10,
     "MYCrs11986220_colorblind": false,
@@ -136,8 +136,8 @@
     "MYCrs11986220_reference": "GRCh37",
     "MYCrs11986220_reference-selectized": "",
     "MYCrs11986220_region": [
-      128531515,
-      128531977
+      0,
+      100
     ],
     "MYCrs6983267_barcodes": 10,
     "MYCrs6983267_colorblind": false,
@@ -146,8 +146,8 @@
     "MYCrs6983267_reference": "GRCh37",
     "MYCrs6983267_reference-selectized": "",
     "MYCrs6983267_region": [
-      128413074,
-      128413673
+      0,
+      100
     ],
     "PKLR-24h_barcodes": 10,
     "PKLR-24h_colorblind": false,
@@ -156,8 +156,8 @@
     "PKLR-24h_reference": "GRCh37",
     "PKLR-24h_reference-selectized": "",
     "PKLR-24h_region": [
-      155271186,
-      155271655
+      0,
+      100
     ],
     "PKLR-48h_barcodes": 10,
     "PKLR-48h_colorblind": false,
@@ -166,8 +166,8 @@
     "PKLR-48h_reference": "GRCh37",
     "PKLR-48h_reference-selectized": "",
     "PKLR-48h_region": [
-      155271186,
-      155271655
+      0,
+      100
     ],
     "promoterNavigation": null,
     "RET_barcodes": 10,
@@ -177,8 +177,8 @@
     "RET_reference": "GRCh37",
     "RET_reference-selectized": "",
     "RET_region": [
-      43581927,
-      43582526
+      0,
+      100
     ],
     "SORT1_barcodes": 10,
     "SORT1_colorblind": false,
@@ -187,8 +187,8 @@
     "SORT1_reference": "GRCh37",
     "SORT1_reference-selectized": "",
     "SORT1_region": [
-      109817274,
-      109817873
+      0,
+      100
     ],
     "SORT1-flip_barcodes": 10,
     "SORT1-flip_colorblind": false,
@@ -197,8 +197,8 @@
     "SORT1-flip_reference": "GRCh37",
     "SORT1-flip_reference-selectized": "",
     "SORT1-flip_region": [
-      109817273,
-      109817873
+      0,
+      100
     ],
     "SORT1.2_barcodes": 10,
     "SORT1.2_colorblind": false,
@@ -207,8 +207,8 @@
     "SORT1.2_reference": "GRCh37",
     "SORT1.2_reference-selectized": "",
     "SORT1.2_region": [
-      109817274,
-      109817873
+      0,
+      100
     ],
     "TCF7L2_barcodes": 10,
     "TCF7L2_colorblind": false,
@@ -217,8 +217,8 @@
     "TCF7L2_reference": "GRCh37",
     "TCF7L2_reference-selectized": "",
     "TCF7L2_region": [
-      114757999,
-      114758598
+      0,
+      100
     ],
     "TERT-GAa_barcodes": 10,
     "TERT-GAa_colorblind": false,
@@ -227,8 +227,8 @@
     "TERT-GAa_reference": "GRCh37",
     "TERT-GAa_reference-selectized": "",
     "TERT-GAa_region": [
-      1295104,
-      1295362
+      0,
+      100
     ],
     "TERT-GBM_barcodes": 10,
     "TERT-GBM_colorblind": false,
@@ -237,8 +237,8 @@
     "TERT-GBM_reference": "GRCh37",
     "TERT-GBM_reference-selectized": "",
     "TERT-GBM_region": [
-      1295104,
-      1295362
+      0,
+      100
     ],
     "TERT-GSc_barcodes": 10,
     "TERT-GSc_colorblind": false,
@@ -247,8 +247,8 @@
     "TERT-GSc_reference": "GRCh37",
     "TERT-GSc_reference-selectized": "",
     "TERT-GSc_region": [
-      1295104,
-      1295362
+      0,
+      100
     ],
     "TERT-HEK_barcodes": 10,
     "TERT-HEK_colorblind": false,
@@ -257,8 +257,8 @@
     "TERT-HEK_reference": "GRCh37",
     "TERT-HEK_reference-selectized": "",
     "TERT-HEK_region": [
-      1295104,
-      1295362
+      0,
+      100
     ],
     "UC88_barcodes": 10,
     "UC88_colorblind": false,
@@ -267,8 +267,8 @@
     "UC88_reference": "GRCh37",
     "UC88_reference-selectized": "",
     "UC88_region": [
-      162094919,
-      162095509
+      0,
+      100
     ],
     "ZFAND3_barcodes": 10,
     "ZFAND3_colorblind": false,
@@ -277,8 +277,8 @@
     "ZFAND3_reference": "GRCh37",
     "ZFAND3_reference-selectized": "",
     "ZFAND3_region": [
-      37775275,
-      37775853
+      0,
+      100
     ],
     "ZRSh-13_barcodes": 10,
     "ZRSh-13_colorblind": false,
@@ -287,18 +287,8 @@
     "ZRSh-13_reference": "GRCh37",
     "ZRSh-13_reference-selectized": "",
     "ZRSh-13_region": [
-      156583813,
-      156584298
-    ],
-    "ZRSh-13h2_barcodes": 10,
-    "ZRSh-13h2_colorblind": false,
-    "ZRSh-13h2_deletions": true,
-    "ZRSh-13h2_pvalue": 1e-05,
-    "ZRSh-13h2_reference": "GRCh37",
-    "ZRSh-13h2_reference-selectized": "",
-    "ZRSh-13h2_region": [
-      156583813,
-      156584298
+      0,
+      100
     ]
   },
   "output": {
