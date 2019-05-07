@@ -42,7 +42,6 @@ getPlot <- function(data,name, release, colourPalette="default") {
   colours <- defaultColours
   
   if (colourPalette == "colorblind") {
-    print(colourPalette)
     colours <- colorblindColors
   }
   
