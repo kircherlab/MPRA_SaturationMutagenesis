@@ -1,0 +1,300 @@
+{
+  "input": {
+    "BCL11A_barcodes": 10,
+    "BCL11A_colorblind": false,
+    "BCL11A_deletions": true,
+    "BCL11A_pvalue": 1e-05,
+    "BCL11A_reference": "GRCh37",
+    "BCL11A_reference-selectized": "",
+    "BCL11A_region": [
+      0,
+      100
+    ],
+    "download_enhancer": null,
+    "download_enhancer-selectized": "",
+    "download_format_all": ".tsv",
+    "download_format_all-selectized": "",
+    "download_promoter": null,
+    "download_promoter-selectized": "",
+    "download_reference_all": "GRCh37",
+    "download_reference_all-selectized": "",
+    "enhancerNavigation": null,
+    "F9_barcodes": 10,
+    "F9_colorblind": false,
+    "F9_deletions": true,
+    "F9_pvalue": 1e-05,
+    "F9_reference": "GRCh37",
+    "F9_reference-selectized": "",
+    "F9_region": [
+      0,
+      100
+    ],
+    "FOXE1_barcodes": 10,
+    "FOXE1_colorblind": false,
+    "FOXE1_deletions": true,
+    "FOXE1_pvalue": 1e-05,
+    "FOXE1_reference": "GRCh37",
+    "FOXE1_reference-selectized": "",
+    "FOXE1_region": [
+      0,
+      100
+    ],
+    "GP1BA_barcodes": 10,
+    "GP1BA_colorblind": false,
+    "GP1BA_deletions": true,
+    "GP1BA_pvalue": 1e-05,
+    "GP1BA_reference": "GRCh37",
+    "GP1BA_reference-selectized": "",
+    "GP1BA_region": [
+      0,
+      100
+    ],
+    "HBB_barcodes": 10,
+    "HBB_colorblind": false,
+    "HBB_deletions": true,
+    "HBB_pvalue": 1e-05,
+    "HBB_reference": "GRCh37",
+    "HBB_reference-selectized": "",
+    "HBB_region": [
+      0,
+      100
+    ],
+    "HBG1_barcodes": 10,
+    "HBG1_colorblind": false,
+    "HBG1_deletions": true,
+    "HBG1_pvalue": 1e-05,
+    "HBG1_reference": "GRCh37",
+    "HBG1_reference-selectized": "",
+    "HBG1_region": [
+      0,
+      100
+    ],
+    "HNF4A_barcodes": 10,
+    "HNF4A_colorblind": false,
+    "HNF4A_deletions": true,
+    "HNF4A_pvalue": 1e-05,
+    "HNF4A_reference": "GRCh37",
+    "HNF4A_reference-selectized": "",
+    "HNF4A_region": [
+      0,
+      100
+    ],
+    "IRF4_barcodes": 10,
+    "IRF4_colorblind": false,
+    "IRF4_deletions": true,
+    "IRF4_pvalue": 1e-05,
+    "IRF4_reference": "GRCh37",
+    "IRF4_reference-selectized": "",
+    "IRF4_region": [
+      0,
+      100
+    ],
+    "IRF6_barcodes": 10,
+    "IRF6_colorblind": false,
+    "IRF6_deletions": true,
+    "IRF6_pvalue": 1e-05,
+    "IRF6_reference": "GRCh37",
+    "IRF6_reference-selectized": "",
+    "IRF6_region": [
+      0,
+      100
+    ],
+    "LDLR_barcodes": 10,
+    "LDLR_colorblind": false,
+    "LDLR_deletions": true,
+    "LDLR_pvalue": 1e-05,
+    "LDLR_reference": "GRCh37",
+    "LDLR_reference-selectized": "",
+    "LDLR_region": [
+      0,
+      100
+    ],
+    "LDLR.2_barcodes": 10,
+    "LDLR.2_colorblind": false,
+    "LDLR.2_deletions": true,
+    "LDLR.2_pvalue": 1e-05,
+    "LDLR.2_reference": "GRCh37",
+    "LDLR.2_reference-selectized": "",
+    "LDLR.2_region": [
+      0,
+      100
+    ],
+    "MSMB_barcodes": 10,
+    "MSMB_colorblind": false,
+    "MSMB_deletions": true,
+    "MSMB_pvalue": 1e-05,
+    "MSMB_reference": "GRCh37",
+    "MSMB_reference-selectized": "",
+    "MSMB_region": [
+      0,
+      100
+    ],
+    "MYCrs11986220_barcodes": 10,
+    "MYCrs11986220_colorblind": false,
+    "MYCrs11986220_deletions": true,
+    "MYCrs11986220_pvalue": 1e-05,
+    "MYCrs11986220_reference": "GRCh37",
+    "MYCrs11986220_reference-selectized": "",
+    "MYCrs11986220_region": [
+      0,
+      100
+    ],
+    "MYCrs6983267_barcodes": 10,
+    "MYCrs6983267_colorblind": false,
+    "MYCrs6983267_deletions": true,
+    "MYCrs6983267_pvalue": 1e-05,
+    "MYCrs6983267_reference": "GRCh37",
+    "MYCrs6983267_reference-selectized": "",
+    "MYCrs6983267_region": [
+      0,
+      100
+    ],
+    "PKLR-24h_barcodes": 10,
+    "PKLR-24h_colorblind": false,
+    "PKLR-24h_deletions": true,
+    "PKLR-24h_pvalue": 1e-05,
+    "PKLR-24h_reference": "GRCh37",
+    "PKLR-24h_reference-selectized": "",
+    "PKLR-24h_region": [
+      0,
+      100
+    ],
+    "PKLR-48h_barcodes": 10,
+    "PKLR-48h_colorblind": false,
+    "PKLR-48h_deletions": true,
+    "PKLR-48h_pvalue": 1e-05,
+    "PKLR-48h_reference": "GRCh37",
+    "PKLR-48h_reference-selectized": "",
+    "PKLR-48h_region": [
+      0,
+      100
+    ],
+    "promoterNavigation": null,
+    "RET_barcodes": 10,
+    "RET_colorblind": false,
+    "RET_deletions": true,
+    "RET_pvalue": 1e-05,
+    "RET_reference": "GRCh37",
+    "RET_reference-selectized": "",
+    "RET_region": [
+      0,
+      100
+    ],
+    "SORT1_barcodes": 10,
+    "SORT1_colorblind": false,
+    "SORT1_deletions": true,
+    "SORT1_pvalue": 1e-05,
+    "SORT1_reference": "GRCh37",
+    "SORT1_reference-selectized": "",
+    "SORT1_region": [
+      0,
+      100
+    ],
+    "SORT1-flip_barcodes": 10,
+    "SORT1-flip_colorblind": false,
+    "SORT1-flip_deletions": true,
+    "SORT1-flip_pvalue": 1e-05,
+    "SORT1-flip_reference": "GRCh37",
+    "SORT1-flip_reference-selectized": "",
+    "SORT1-flip_region": [
+      0,
+      100
+    ],
+    "SORT1.2_barcodes": 10,
+    "SORT1.2_colorblind": false,
+    "SORT1.2_deletions": true,
+    "SORT1.2_pvalue": 1e-05,
+    "SORT1.2_reference": "GRCh37",
+    "SORT1.2_reference-selectized": "",
+    "SORT1.2_region": [
+      0,
+      100
+    ],
+    "TCF7L2_barcodes": 10,
+    "TCF7L2_colorblind": false,
+    "TCF7L2_deletions": true,
+    "TCF7L2_pvalue": 1e-05,
+    "TCF7L2_reference": "GRCh37",
+    "TCF7L2_reference-selectized": "",
+    "TCF7L2_region": [
+      0,
+      100
+    ],
+    "TERT-GAa_barcodes": 10,
+    "TERT-GAa_colorblind": false,
+    "TERT-GAa_deletions": true,
+    "TERT-GAa_pvalue": 1e-05,
+    "TERT-GAa_reference": "GRCh37",
+    "TERT-GAa_reference-selectized": "",
+    "TERT-GAa_region": [
+      0,
+      100
+    ],
+    "TERT-GBM_barcodes": 10,
+    "TERT-GBM_colorblind": false,
+    "TERT-GBM_deletions": true,
+    "TERT-GBM_pvalue": 1e-05,
+    "TERT-GBM_reference": "GRCh37",
+    "TERT-GBM_reference-selectized": "",
+    "TERT-GBM_region": [
+      0,
+      100
+    ],
+    "TERT-GSc_barcodes": 10,
+    "TERT-GSc_colorblind": false,
+    "TERT-GSc_deletions": true,
+    "TERT-GSc_pvalue": 1e-05,
+    "TERT-GSc_reference": "GRCh37",
+    "TERT-GSc_reference-selectized": "",
+    "TERT-GSc_region": [
+      0,
+      100
+    ],
+    "TERT-HEK_barcodes": 10,
+    "TERT-HEK_colorblind": false,
+    "TERT-HEK_deletions": true,
+    "TERT-HEK_pvalue": 1e-05,
+    "TERT-HEK_reference": "GRCh37",
+    "TERT-HEK_reference-selectized": "",
+    "TERT-HEK_region": [
+      0,
+      100
+    ],
+    "UC88_barcodes": 10,
+    "UC88_colorblind": false,
+    "UC88_deletions": true,
+    "UC88_pvalue": 1e-05,
+    "UC88_reference": "GRCh37",
+    "UC88_reference-selectized": "",
+    "UC88_region": [
+      0,
+      100
+    ],
+    "ZFAND3_barcodes": 10,
+    "ZFAND3_colorblind": false,
+    "ZFAND3_deletions": true,
+    "ZFAND3_pvalue": 1e-05,
+    "ZFAND3_reference": "GRCh37",
+    "ZFAND3_reference-selectized": "",
+    "ZFAND3_region": [
+      0,
+      100
+    ],
+    "ZRSh-13_barcodes": 10,
+    "ZRSh-13_colorblind": false,
+    "ZRSh-13_deletions": true,
+    "ZRSh-13_pvalue": 1e-05,
+    "ZRSh-13_reference": "GRCh37",
+    "ZRSh-13_reference-selectized": "",
+    "ZRSh-13_region": [
+      0,
+      100
+    ]
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}
