@@ -40,10 +40,7 @@ We made our data available prior to publication in line with  [Fort Lauderdale p
 
 The manuscript describing this data set, global analysis and TERT knock-down experiments was published on Aug 8, 2019:
 
-Saturation mutagenesis of twenty disease-associated regulatory elements at single base-pair resolution.
-Kircher M, Xiong C, Martin B, Schubach M, Inoue F, Bell RJA, Costello JF, Shendure J, Ahituv N.
-Nat Commun. 2019 Aug 8;10(1):3583. doi: 10.1038/s41467-019-11526-w.
-[PMID: 31395865](https://pubmed.ncbi.nlm.nih.gov/31395865/)
+Kircher M, Xiong C, Martin B, Schubach M, Inoue F, Bell RJA, Costello JF, Shendure J, Ahituv N. **Saturation mutagenesis of twenty disease-associated regulatory elements at single base-pair resolution.** *Nature Communication*. 2019 Aug 8;10(1):3583. doi: [10.1038/s41467-019-11526-w](https://doi.org/10.1038/s41467-019-11526-w).
 
 NCBI GEO and raw data submission are available under accession [GSE126550](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126550).
 
@@ -54,6 +51,7 @@ For general information and specific questions about the experiment contact [Nad
 <p style="text-align: center;">
 
 <img src="logos/bih.png", height="75">
+<img src="logos/charite.png", height="75">
 <img src="logos/ucsf.png", height="75">
 <img src="logos/uw.png", height="75">
 </p>
