@@ -314,4 +314,11 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
+shinyApp(
+  ui = ui,
+  server = server,
+  options = list(
+    host = Sys.getenv("SHINY_HOST", "0.0.0.0"),
+    port = as.integer(Sys.getenv("SHINY_PORT", 5000))
+  )
+)
