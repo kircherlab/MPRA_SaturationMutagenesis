@@ -45,7 +45,7 @@ R packages:
 - shinytest version 1.4.0
 - htmlwidgets version 1.5.1
 - readr version 1.4.0
-- stringr bersion 1.4.0
+- stringr version 1.4.0
 - plotly version 4.9.2.1
 
 
