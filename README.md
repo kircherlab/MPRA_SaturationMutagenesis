@@ -1,6 +1,6 @@
 # Saturation mutagenesis MPRA data access portal
 
-Shiny webapp of [https://mpra.gs.washington.edu/satMutMPRA](https://mpra.gs.washington.edu/satMutMPRA).
+Shiny webapp of [https://mpra.gs.washington.edu/satMutMPRA](https://mpra.gs.washington.edu/satMutMPRA) or [https://kircherlab.bihealth.org/satMutMPRA/](https://kircherlab.bihealth.org/satMutMPRA/).
 
 ## Installation
 
