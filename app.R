@@ -185,7 +185,7 @@ server <- function(input, output, session) {
             ggplotly(p) %>% 
               layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
               config(displayModeBar = F)
-          },quoted = TRUE)
+          })
           })
         }
       }

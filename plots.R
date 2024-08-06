@@ -12,18 +12,18 @@ standard_SatMut_region_style <- function() {
   size.geom_point = 2
   standard_style <- theme_bw() + theme(plot.title = element_text(size = size.title, face="bold",hjust = 0.5),
                                        panel.grid.major = element_blank() , panel.grid.minor = element_blank(), panel.border = element_blank(),
-                                       axis.text = element_text(colour = "black",size=size.text), axis.title = element_text(colour = "black",size=size.title), axis.ticks = element_line(colour = "black", size=1), axis.line.y = element_line(color="black", size = size.line), axis.line = element_line(colour = "black", size=size.line),
+                                       axis.text = element_text(colour = "black",size=size.text), axis.title = element_text(colour = "black",size=size.title), axis.ticks = element_line(colour = "black", linewidth=1), axis.line.y = element_line(color="black", linewidth = size.line), axis.line = element_line(colour = "black", linewidth=size.line),
                                        legend.key =  element_blank(), legend.text = element_text(size=size.text),
                                         legend.position="top", legend.box.just = "left",  legend.background = element_rect(fill = "transparent", colour = "transparent"), legend.margin = margin(0, 0, 0, 0),
                                        legend.key.size = unit(2, 'lines'), legend.title=element_text(size=size.text))+
-    theme(axis.line.x = element_line(color="black", size = size.line))
+    theme(axis.line.x = element_line(color="black", linewidth = size.line))
 }
 
 modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, range=NULL) {
   data <- data %>% select(Chrom,Pos,Ref,Alt,Barcodes, Coefficient, pValue) %>%
     filter(Barcodes >= barcodes) %>% 
-    mutate(significance=if_else(pValue<threshold,"Significant", "Not significant")) %>%
-    mutate(printpos=if_else(Alt=="A",as.double(Pos)-0.4,if_else(Alt=="T",as.double(Pos)-0.2, if_else(Alt=="G",as.double(Pos)+0.0,if_else(Alt=="C",as.double(Pos)+0.2,as.double(Pos)+0.4)))))
+    mutate(significance=ifelse(pValue<threshold,"Significant", "Not significant")) %>%
+    mutate(printpos=ifelse(Alt=="A",as.double(Pos)-0.4,ifelse(Alt=="T",as.double(Pos)-0.2, ifelse(Alt=="G",as.double(Pos)+0.0,ifelse(Alt=="C",as.double(Pos)+0.2,as.double(Pos)+0.4)))))
   if (!deletions) {
     data <- data %>% filter(Alt != "-")
   }
@@ -46,8 +46,8 @@ getPlot <- function(data,name, release, colourPalette="default") {
   }
   
   refs <- data$Ref %>% unique()
-  aesRefsValues <- c(if_else("A" %in% refs,15,c()),if_else("C" %in% refs,16,c()),if_else("G" %in% refs,17,c()),if_else("T" %in% refs,18,c()))
-  aesRefsShape <- c(if_else("A" %in% refs,0,c()),if_else("C" %in% refs,1,c()),if_else("G" %in% refs,2,c()),if_else("T" %in% refs,5,c()))
+  aesRefsValues <- c(ifelse("A" %in% refs,15,c()),ifelse("C" %in% refs,16,c()),ifelse("G" %in% refs,17,c()),ifelse("T" %in% refs,18,c()))
+  aesRefsShape <- c(ifelse("A" %in% refs,0,c()),ifelse("C" %in% refs,1,c()),ifelse("G" %in% refs,2,c()),ifelse("T" %in% refs,5,c()))
   aesRefsValues <- aesRefsValues[!is.na(aesRefsValues)]
   aesRefsShape <- aesRefsShape[!is.na(aesRefsShape)]
   
@@ -55,14 +55,14 @@ getPlot <- function(data,name, release, colourPalette="default") {
   sigs <- data$significance %>% unique()
   aesSize<-c(rep(7,length(alts)), rep(3,length(sigs)))
   aesLine<-c(rep(0,length(alts)), rep(1,length(sigs)))
-  aesShape<-c(if_else("A" %in% alts,15,c()),if_else("C" %in% alts,16,c()),if_else("G" %in% alts,17,c()),if_else("T" %in% alts,18,c()),if_else("-" %in% alts,19,c()), rep(32,length(sigs)))
+  aesShape<-c(ifelse("A" %in% alts,15,c()),ifelse("C" %in% alts,16,c()),ifelse("G" %in% alts,17,c()),ifelse("T" %in% alts,18,c()),ifelse("-" %in% alts,19,c()), rep(32,length(sigs)))
   aesShape <- aesShape[!is.na(aesShape)]
   altBreaks<-c(as.character(alts), sigs)
   
   chr <- data$Chr %>% unique()
   data <- data %>% select(printpos,Coefficient,significance,Alt,Ref) %>% dplyr::rename(Position=printpos)
   p <- ggplot() +
-    geom_segment(data = data, aes(x=Position, xend=Position,y=0,yend=Coefficient, colour=significance), size=0.3, show.legend = TRUE) +
+    geom_segment(data = data, aes(x=Position, xend=Position,y=0,yend=Coefficient, colour=significance), linewidth=0.3, show.legend = TRUE) +
     geom_point(data= data, aes(x=Position,y=Coefficient,colour=Alt, shape=Ref), size=1, show.legend = TRUE) +
     scale_shape_manual("",values=aesRefsValues, guide=guide_legend(override.aes = list(size=1, linetype=0, shape=aesRefsShape),nrow=2)) +
     scale_colour_manual("", values = colours, breaks=altBreaks, labels=altBreaks,
