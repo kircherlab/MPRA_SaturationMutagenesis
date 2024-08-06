@@ -36,7 +36,13 @@ We performed saturation mutagenesis in conjunction with massively parallel repor
 
 ### Data usage
 
-We are making our data available prior to publication in line with  [Fort Lauderdale principle](https://www.genome.gov/pages/research/wellcomereport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. In addition, we also reserve the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of these data.
+We made our data available prior to publication in line with  [Fort Lauderdale principle](https://www.genome.gov/pages/research/wellcomereport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. Furter, we reserved the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of these data.
+
+The manuscript describing this data set, global analysis and TERT knock-down experiments was published on Aug 8, 2019:
+
+Kircher M, Xiong C, Martin B, Schubach M, Inoue F, Bell RJA, Costello JF, Shendure J, Ahituv N. **Saturation mutagenesis of twenty disease-associated regulatory elements at single base-pair resolution.** *Nature Communication*. 2019 Aug 8;10(1):3583. doi: [10.1038/s41467-019-11526-w](https://doi.org/10.1038/s41467-019-11526-w).
+
+NCBI GEO and raw data submission are available under accession [GSE126550](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126550).
 
 ### Contact
 
@@ -45,6 +51,7 @@ For general information and specific questions about the experiment contact [Nad
 <p style="text-align: center;">
 
 <img src="logos/bih.png", height="75">
+<img src="logos/charite.png", height="75">
 <img src="logos/ucsf.png", height="75">
 <img src="logos/uw.png", height="75">
 </p>
