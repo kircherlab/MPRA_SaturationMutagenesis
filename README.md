@@ -43,7 +43,7 @@ R packages:
 - ggplot2 version 3.5.1
 - shiny version 1.9.1
 - shinytest2 version 0.3.1
-- r-shinyvalidate 0.1.3
+- shinyvalidate 0.1.3
 - htmlwidgets version 1.6.4
 - readr version 2.1.5
 - stringr version 1.5.1
