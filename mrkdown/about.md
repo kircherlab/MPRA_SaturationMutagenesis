@@ -46,7 +46,7 @@ NCBI GEO and raw data submission are available under accession [GSE126550](https
 
 ### Contact
 
-For general information and specific questions about the experiment contact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bihealth.de). About the website please contact [Max Schubach](mailto:max.schubach@bihealth.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
+For general information and specific questions about the experiment contact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bih-charite.de). About the website please contact [Max Schubach](mailto:max.schubach@bih-charite.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
 
 <p style="text-align: center;">
 
