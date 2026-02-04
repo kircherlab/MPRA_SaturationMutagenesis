@@ -17,7 +17,7 @@ conda config --add channels conda-forge
 
 Then run `conda install mpra-data-access-portal`
 
-The latest version on conda is `0.1.10` so you can run `conda install mpra-data-access-portal=0.1.10` to install exactly this version.
+The latest version on conda is `0.1.11` so you can run `conda install mpra-data-access-portal=0.1.11` to install exactly this version.
 
 now you can run the data portal via the command: `mpra-data-access-portal`
 
@@ -52,9 +52,9 @@ You can install also via mamba/conda using: `mamba env create -f environment.yam
 
 
 Get the latest version via version release on github: 
-https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.10.tar.gz 
+https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz 
 or cloning the repository: 
-https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.10.tar.gz and change to the version tag `v0.1.10`.
+https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz and change to the version tag `v0.1.11`.
 
 
 the goto the directory and run the shiny server (here on port `8080` and on host `0.0.0.0`, if not alredy defined:
