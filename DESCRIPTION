@@ -7,7 +7,7 @@ Authors@R: c(
 )
 License: MIT
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.0.0)
 Imports:
     shiny,
     htmlwidgets,
