@@ -1,17 +1,22 @@
 td {
-    padding: 0 5px 0 5px;
-    border-bottom: 1px solid rgb(227, 227, 227);
+  padding: 0 5px 0 5px;
+  border-bottom: 1px solid rgb(227, 227, 227);
 }
+
 th {
   border-bottom: 1px solid #000;
   padding: 0 5px 0 5px;
   background-color: rgb(245, 245, 245);
 }
-tr:hover {background-color: rgb(245, 245, 245);}
+
+tr:hover {
+  background-color: rgb(245, 245, 245);
+}
 
 #download_panel {
   padding-right: 0px;
 }
+
 #file_format {
   background-color: rgb(245, 245, 245);
   border-bottom-color: rgb(227, 227, 227);
@@ -43,4 +48,36 @@ tr:hover {background-color: rgb(245, 245, 245);}
 
 #canvas {
   height: 100%;
+}
+
+/* set color for normal text globally */
+body {
+  color: #28282E;
+}
+
+a {
+  color: #1D71D7;
+  /* link color */
+  /*text-decoration: underline;  in case if the color contrast is not enough */
+}
+
+a:hover,
+a:focus {
+  color: #154EA0;
+  /* darker blue */
+  text-decoration: underline;
+  /* and also underline if link in focus */
+}
+
+/* navigation bar colors */
+.navbar-default .navbar-nav>li>a {
+  color: #737373;
+  /* slightly darker than before */
+}
+
+/* Hover- und  */
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+  color: #28282E;
+  /* same color as surroundig */
 }
