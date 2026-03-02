@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "r",
+  "pull-request-title-pattern": "chore${scope}: release${component} ${version}",
+  "packages": {
+    ".": {
+      "package-name": "saturationMutagenesisApp",
+      "release-type": "r",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "draft": false,
+      "prerelease": false,
+      "tag-prefix": "v",
+      "include-component-in-tag": false,
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}
