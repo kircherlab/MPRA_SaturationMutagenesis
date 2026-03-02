@@ -1,4 +1,11 @@
-# Changelog
+## [0.1.12](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.11...v0.1.12) (2026-03-02)
+
+
+### Bug Fixes
+
+* accessibility improvemens ([#21](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/21)) ([0343ae8](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/0343ae893c82e98c608d8653710c48afaabe412d))
+
+## Changelog
 
 All notable changes to this project will be documented in this file.
 
