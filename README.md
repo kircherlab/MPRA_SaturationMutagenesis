@@ -66,3 +66,65 @@ export SHINY_PORT=${SHINY_PORT-8080}
 
 Rscript -e "shiny::runApp(port = ${SHINY_PORT}, launch.browser = FALSE, host = '${SHINY_HOST}')"
 ```
+
+## Development
+
+### Setting up the development environment
+
+To set up a development environment, use conda with the provided `environment.yml`:
+
+```bash
+conda env create -f environment.yml -n satMutMPRA
+conda activate satMutMPRA
+```
+
+### Running tests
+
+To run the test suite:
+
+```bash
+conda activate satMutMPRA
+Rscript run_tests.R
+```
+
+Tests verify:
+- All required packages are available
+- Data files exist and have expected format
+- Application code has valid syntax
+- Markdown documentation files are present
+
+## Releases
+
+This project uses [Release Please](https://github.com/googleapis/release-please-action) to automate versioning and release management.
+
+### How releases work
+
+Releases are automatically created when commits are pushed to `master` using [Conventional Commits](https://www.conventionalcommits.org/). The Release Please action will:
+
+1. Analyze commit messages on master
+2. Create a release PR with updated DESCRIPTION version and CHANGELOG
+3. Once merged, automatically create a GitHub release with:
+   - Release notes generated from commit history
+   - Packaged artifacts (tar.gz and zip files)
+   - Tests run to verify the release
+
+### Making a release
+
+Simply use conventional commit messages in your pull requests:
+
+- `feat:` - New features (triggers minor version bump: 0.1.11 → 0.2.0)
+- `fix:` - Bug fixes (triggers patch version bump: 0.1.11 → 0.1.12)
+- `BREAKING CHANGE:` - Major changes (triggers major version bump: 0.1.11 → 1.0.0)
+
+Example:
+```bash
+git commit -m "feat: add support for new reference genome"
+git commit -m "fix: update filter logic for edge cases"
+```
+
+When you merge a PR with such commits, Release Please will automatically:
+- Create a release PR updating the version
+- Update CHANGELOG.md
+- Merge and create the GitHub release
+
+Releases are available at: https://github.com/kircherlab/MPRA_SaturationMutagenesis/releases

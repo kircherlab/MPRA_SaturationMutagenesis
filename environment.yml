@@ -1,0 +1,15 @@
+name: satMutMPRA
+channels:
+  - conda-forge
+dependencies:
+  - r-base>=3.5.0
+  - r-shiny
+  - r-htmlwidgets
+  - r-dt
+  - r-dplyr
+  - r-ggplot2
+  - r-readr
+  - r-stringr
+  - r-plotly
+  - r-shinytest
+  - r-testthat
