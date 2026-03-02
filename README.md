@@ -66,3 +66,29 @@ export SHINY_PORT=${SHINY_PORT-8080}
 
 Rscript -e "shiny::runApp(port = ${SHINY_PORT}, launch.browser = FALSE, host = '${SHINY_HOST}')"
 ```
+
+## Development
+
+### Setting up the development environment
+
+To set up a development environment, use conda with the provided `environment.yml`:
+
+```bash
+conda env create -f environment.yml -n satMutMPRA
+conda activate satMutMPRA
+```
+
+### Running tests
+
+To run the test suite:
+
+```bash
+conda activate satMutMPRA
+Rscript run_tests.R
+```
+
+Tests verify:
+- All required packages are available
+- Data files exist and have expected format
+- Application code has valid syntax
+- Markdown documentation files are present
