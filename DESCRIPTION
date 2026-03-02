@@ -3,7 +3,7 @@ Title: MPRA Saturation Mutagenesis Data Access Portal
 Version: 0.1.11
 Description: A Shiny web application for accessing MPRA saturation mutagenesis data.
 Authors@R: c(
-    person("Kircher Lab", email = "contact@gs.washington.edu", role = "cre")
+    person("Max Schubach", email = "max.schubach@bih-charite.de", role = "cre")
 )
 License: MIT
 Depends:
