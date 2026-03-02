@@ -37,12 +37,10 @@ jobs:
         with:
           r-version: 'latest'
 
-      - name: Setup dependencies
+      - name: Setup R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: |
-            any::shinytest
-            any::shiny
+          dependencies: '"all"'
           cache: true
 
       - name: Run tests
