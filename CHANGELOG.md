@@ -1,3 +1,10 @@
+## [0.1.13](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.12...v0.1.13) (2026-03-03)
+
+
+### Bug Fixes
+
+* update dependencies and correct logo paths in documentation ([#23](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/23)) ([e0a4654](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/e0a46545a06aacb25717f3534792b53f89a45449))
+
 ## [0.1.12](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.11...v0.1.12) (2026-03-02)
 
 ### Bug Fixes
