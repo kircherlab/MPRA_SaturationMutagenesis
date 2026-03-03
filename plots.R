@@ -21,7 +21,7 @@ standard_SatMut_region_style <- function() {
 
 modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, range=NULL) {
   data <- data %>% select(Chrom,Pos,Ref,Alt,Barcodes, Coefficient, pValue) %>%
-    filter(Barcodes >= barcodes) %>% 
+    filter(Barcodes >= barcodes) %>%
     mutate(significance=ifelse(pValue<threshold,"Significant", "Not significant")) %>%
     mutate(printpos=ifelse(Alt=="A",as.double(Pos)-0.4,ifelse(Alt=="T",as.double(Pos)-0.2, ifelse(Alt=="G",as.double(Pos)+0.0,ifelse(Alt=="C",as.double(Pos)+0.2,as.double(Pos)+0.4)))))
   if (!deletions) {
@@ -34,23 +34,23 @@ modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, 
 }
 
 
-defaultColours=c("A"="#0f9447","C"="#235c99","T"="#d42638","G"="#f5b328","-"="#cccccc", 
+defaultColours=c("A"="#0f9447","C"="#235c99","T"="#d42638","G"="#f5b328","-"="#cccccc",
                          "Significant"="#005500","Not significant"="red")
-colorblindColors=c("A"="#1B9E77","C"="#7570B3","T"="#D95F02","G"="#E6AB02","-"="#A6761D", 
+colorblindColors=c("A"="#1B9E77","C"="#7570B3","T"="#D95F02","G"="#E6AB02","-"="#A6761D",
                    "Significant"="#66A61E","Not significant"="#E7298A")
 getPlot <- function(data,name, release, colourPalette="default") {
   colours <- defaultColours
-  
+
   if (colourPalette == "colorblind") {
     colours <- colorblindColors
   }
-  
+
   refs <- data$Ref %>% unique()
   aesRefsValues <- c(ifelse("A" %in% refs,15,c()),ifelse("C" %in% refs,16,c()),ifelse("G" %in% refs,17,c()),ifelse("T" %in% refs,18,c()))
   aesRefsShape <- c(ifelse("A" %in% refs,0,c()),ifelse("C" %in% refs,1,c()),ifelse("G" %in% refs,2,c()),ifelse("T" %in% refs,5,c()))
   aesRefsValues <- aesRefsValues[!is.na(aesRefsValues)]
   aesRefsShape <- aesRefsShape[!is.na(aesRefsShape)]
-  
+
   alts <- data$Alt %>% unique()
   sigs <- data$significance %>% unique()
   aesSize<-c(rep(7,length(alts)), rep(3,length(sigs)))
@@ -58,7 +58,7 @@ getPlot <- function(data,name, release, colourPalette="default") {
   aesShape<-c(ifelse("A" %in% alts,15,c()),ifelse("C" %in% alts,16,c()),ifelse("G" %in% alts,17,c()),ifelse("T" %in% alts,18,c()),ifelse("-" %in% alts,19,c()), rep(32,length(sigs)))
   aesShape <- aesShape[!is.na(aesShape)]
   altBreaks<-c(as.character(alts), sigs)
-  
+
   chr <- data$Chr %>% unique()
   data <- data %>% select(printpos,Coefficient,significance,Alt,Ref) %>% dplyr::rename(Position=printpos)
   p <- ggplot() +

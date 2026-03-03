@@ -1,6 +1,6 @@
 #
 # This is a Shiny web application to access the MPRA saturation mutagenisis data.
-# 
+#
 # It should be hosted on https://mpra.gs.washington.edu/satMutagenesis and has teh following functionality
 #
 # 1. Inform about the project/data and the people/labs behind it (About website)
@@ -25,13 +25,13 @@ source("plots.R")
 
 # load the elements seperated by enhacners and promoters
 loadElementList <- function(path) {
-  elements <- read.delim(path, header=FALSE, quote="") 
+  elements <- read.delim(path, header=FALSE, quote="")
   colnames(elements) <- c("Element")
   elements <- elements %>% arrange(Element)
   return(elements)
 }
 
-enhancers <- loadElementList("data/enhancers.tsv") 
+enhancers <- loadElementList("data/enhancers.tsv")
 promoters <- loadElementList("data/promoters.tsv")
 
 # Combine the elements (for download)
@@ -62,10 +62,10 @@ ui <- fluidRow(id="canvas",
                           tabsetPanel(type = "tabs", id="promoterNavigation")),
                  tabPanel("Enhancer",
                           tabsetPanel(type = "tabs",id="enhancerNavigation")),
-                 tabPanel("Download", 
+                 tabPanel("Download",
                           fluidPage(title="Download elements",
                             h2("Download elements"),
-                    
+
                             # Application title
                             hr(),
                             fluidRow(
@@ -77,7 +77,7 @@ ui <- fluidRow(id="canvas",
                                      selectInput("download_format_all", "Format:",c(".tsv",".csv")),
                                      downloadButton("downloadData_selected", "Download Selected Elements"),
                                      downloadButton("downloadData_all", "Download All Elements")
-                                     
+
                               ),
                               column(8,
                                      id="file_format",
@@ -91,7 +91,7 @@ ui <- fluidRow(id="canvas",
         column(12,
                id="footer",
                 HTML('<a href="https://www.washington.edu/online/terms">Terms and Conditions</a> and the <a href="https://www.washington.edu/online/privacy">Online Privacy Statement</a> of the University of Washington apply.')
-        )   
+        )
 )
 
 
@@ -100,14 +100,14 @@ ui <- fluidRow(id="canvas",
 
 # Define server logic required for this website
 server <- function(input, output, session) {
-  
-  # The list of different experiments is dynamic. 
+
+  # The list of different experiments is dynamic.
   # This function creates different tabs for an element with asidebar panel for filtering
   # and a main panel with Tabset table view and Plot. It is debendend on the name element
   experimentPage <- function(name){
     panel <- tabPanel(name,
              fluidPage(
-               
+
                # Application title
                headerPanel(name),
                #mainPanel(
@@ -141,16 +141,16 @@ server <- function(input, output, session) {
                                  )
                      )
                    )
-                   
+
                  )
                #)
              )
     )
     return(panel)
   }
-  
+
   # function to render the table/plot for a specific selected element (by name)
-  # is dependend on the release, barcodes, p-value threshsold, true/false deletions, 
+  # is dependend on the release, barcodes, p-value threshsold, true/false deletions,
   # range of the plot and needs output and session element
   renderElement <- function(name,release,barcodes, threshold, deletions, range, output,session, colorPalette) {
     # check first if elements are not null
@@ -160,7 +160,7 @@ server <- function(input, output, session) {
         # get name depeneded data and filter on release
         data_general <- data_tables[[name]] %>% filter(Release==release)
         # filter on barcodes as well as pvalue for the table, remove not needed rows
-        data <- data_general %>% filter(Barcodes >= barcodes) %>% filter(pValue < threshold) %>%  
+        data <- data_general %>% filter(Barcodes >= barcodes) %>% filter(pValue < threshold) %>%
           select(-Element,-Release)
         # remove deletions if unselected
         if (!deletions) {
@@ -174,7 +174,7 @@ server <- function(input, output, session) {
         output[[paste0(name,"_table")]] <- DT::renderDT(data, rownames = FALSE, filter="top",
                                                         options = list(lengthMenu = list(c(25,50, 100, 500, 1000, -1), list('25', '50', '100','500','1000', 'All'))),
                                                         colnames = c('Chromosome', 'Position', 'Ref', 'Alt', 'Tags','DNA','RNA','Value','P-Value'))
-        
+
         # plot the data. here the helper   modify.filterdata is used to filter the data (from plots.R
         # and the function getPlot from the same source to plot the ggplot
         plotData <- modify.filterdata(data_general, barcodes,threshold,deletions,range)
@@ -182,8 +182,8 @@ server <- function(input, output, session) {
           isolate({
           output[[paste0(name,"_plot")]] <- renderPlotly({
             p <- getPlot(plotData,name,release,colorPalette)
-            ggplotly(p) %>% 
-              layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>% 
+            ggplotly(p) %>%
+              layout(autosize=TRUE) %>% layout(xaxis=list(fixedrange=TRUE)) %>% layout(yaxis=list(fixedrange=TRUE)) %>%
               config(displayModeBar = F)
           })
           })
@@ -191,7 +191,7 @@ server <- function(input, output, session) {
       }
     }
   }
-  
+
   # update the slider. We have to set the min/max of a slider depending on the element and on the selected genome release
   updateRegionSlider <- function(session, id, name, release) {
     # always check if release is not NULL
@@ -200,16 +200,16 @@ server <- function(input, output, session) {
       data <- data_tables[[name]] %>% filter(Release==release)
       min <- min(data$Pos)
       max <- max(data$Pos)
-      
+
       updateSliderInput(session, id, value = c(min,max), min=min, max=max, step=1)
     }
   }
-  
+
   #############################
-  
+
   # need to store the selected genome release here to update min/max if needed
   session$userData$actualSelectedRelease <- list()
-  
+
   # initialize the tabs with the elements. promoter and enhancer wise. redenr element and set slider first
   for (name in promoters$Element){
     session$userData$actualSelectedRelease[[name]] <- "GRCh37"
@@ -227,32 +227,32 @@ server <- function(input, output, session) {
       renderElement(name,"GRCh37",10,1e-5,TRUE,NULL,output,session,"default")
     })
   }
-  
-  
+
+
   # observer to observe filter and other selections
   # FIXME: Right now it observes everything and acts on that.
-  # It would be better to act on the direct klick on a specifi slider 
+  # It would be better to act on the direct klick on a specifi slider
   # or other selection element in the filter settings not on all.
   # But the names are dynamically. So it will be difficult
-  
+
   observe({
       for (name in elements$Element){
-        
+
         # get the inputs
         release <- input[[paste0(name,"_reference")]]
         barcodes <- input[[paste0(name,"_barcodes")]]
         pValue <- input[[paste0(name,"_pvalue")]]
-        
+
         deletions <- input[[paste0(name,"_deletions")]]
-        
+
         colorblind <- input[[paste0(name,"_colorblind")]]
-        
+
         if(!is.null(colorblind) && colorblind) {
           colorPalette <- "colorblind"
         } else {
           colorPalette <- "default"
         }
-        
+
         # update the slider if the release changed
         if (!is.null(release) && session$userData$actualSelectedRelease[[name]] != release) {
           session$userData$actualSelectedRelease[[name]] <- release
@@ -265,7 +265,7 @@ server <- function(input, output, session) {
         })
       }
     })
-  
+
   ## Download button. Observe this specific event
   # selected
   output$downloadData_selected <- downloadHandler(
@@ -305,13 +305,12 @@ server <- function(input, output, session) {
       write.table(data, file, row.names = FALSE, sep=sep, quote=FALSE)
     }
   )
-  
+
   ## ABOUT page right now simple HTML
 #  output$about <- renderUI({
 #    includeMarkdown("mrkdown/about.md")
 #  })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
-

@@ -37,6 +37,7 @@ install dependencies:
 R version 4.3.3
 
 R packages:
+
 - dplyr version 1.1.4
 - DT version 0.33
 - ggplot2 version 3.5.1
@@ -50,15 +51,12 @@ R packages:
 
 You can install also via mamba/conda using: `mamba env create -f environment.yaml -n mpra-data-access-portal`
 
-
-Get the latest version via version release on github: 
-https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz 
-or cloning the repository: 
+Get the latest version via version release on github:
+https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz
+or cloning the repository:
 https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz and change to the version tag `v0.1.11`.
 
-
 the goto the directory and run the shiny server (here on port `8080` and on host `0.0.0.0`, if not alredy defined:
-
 
 ```
 export SHINY_HOST=${SHINY_HOST-0.0.0.0}
@@ -88,6 +86,7 @@ Rscript run_tests.R
 ```
 
 Tests verify:
+
 - All required packages are available
 - Data files exist and have expected format
 - Application code has valid syntax
@@ -102,8 +101,8 @@ This project uses [Release Please](https://github.com/googleapis/release-please-
 Releases are automatically created when commits are pushed to `master` using [Conventional Commits](https://www.conventionalcommits.org/). The Release Please action will:
 
 1. Analyze commit messages on master
-2. Create a release PR with updated DESCRIPTION version and CHANGELOG
-3. Once merged, automatically create a GitHub release with:
+1. Create a release PR with updated DESCRIPTION version and CHANGELOG
+1. Once merged, automatically create a GitHub release with:
    - Release notes generated from commit history
    - Packaged artifacts (tar.gz and zip files)
    - Tests run to verify the release
@@ -117,12 +116,14 @@ Simply use conventional commit messages in your pull requests:
 - `BREAKING CHANGE:` - Major changes (triggers major version bump: 0.1.11 → 1.0.0)
 
 Example:
+
 ```bash
 git commit -m "feat: add support for new reference genome"
 git commit -m "fix: update filter logic for edge cases"
 ```
 
 When you merge a PR with such commits, Release Please will automatically:
+
 - Create a release PR updating the version
 - Update CHANGELOG.md
 - Merge and create the GitHub release

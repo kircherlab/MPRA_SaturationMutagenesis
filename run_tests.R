@@ -12,20 +12,20 @@ test_that("loadElementList loads data correctly", {
   # Create a temporary test file
   temp_file <- tempfile()
   writeLines(c("chr22:50964070-50964571", "chr1:100000-100100"), temp_file)
-  
+
   result <- tryCatch({
-    elements <- read.delim(temp_file, header=FALSE, quote="") 
+    elements <- read.delim(temp_file, header=FALSE, quote="")
     colnames(elements) <- c("Element")
     elements <- elements %>% arrange(Element)
     elements
   }, error = function(e) {
     NULL
   })
-  
+
   expect_is(result, "data.frame")
   expect_gt(nrow(result), 0)
   expect_true("Element" %in% colnames(result))
-  
+
   unlink(temp_file)
 })
 
@@ -39,14 +39,14 @@ test_that("app.R sources without errors", {
   }, error = function(e) {
     FALSE
   })
-  
+
   expect_true(result)
 })
 
 # Test 3: Verify all required libraries can be loaded
 test_that("All required packages are available", {
   packages <- c("shiny", "htmlwidgets", "DT", "dplyr", "ggplot2", "readr", "stringr", "plotly")
-  
+
   for (pkg in packages) {
     result <- require(pkg, quietly = TRUE, character.only = TRUE)
     expect_true(result, info = paste("Failed to load package:", pkg))
@@ -61,7 +61,7 @@ test_that("plots.R sources without errors", {
   }, error = function(e) {
     FALSE
   })
-  
+
   expect_true(result)
 })
 
@@ -86,7 +86,7 @@ test_that("Data files have expected format", {
     NULL
   })
   expect_false(is.null(enhancers))
-  
+
   # Check promoters
   promoters <- tryCatch({
     read.delim("data/promoters.tsv", header=FALSE, quote="", nrow=1)

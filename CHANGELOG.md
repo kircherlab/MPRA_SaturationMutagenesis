@@ -1,18 +1,17 @@
 ## [0.1.12](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.11...v0.1.12) (2026-03-02)
 
-
 ### Bug Fixes
 
-* accessibility improvemens ([#21](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/21)) ([0343ae8](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/0343ae893c82e98c608d8653710c48afaabe412d))
+- accessibility improvemens ([#21](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/21)) ([0343ae8](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/0343ae893c82e98c608d8653710c48afaabe412d))
 
 ## [0.1.11] - 2024-01-XX
 
 ### Added
+
 - Initial release of MPRA data access portal
 - Shiny web application for browsing MPRA saturation mutagenesis data
 - Support for filtering by genome release, p-value, and tags
 - Visualization of variants with plotly
 - Download functionality for selected elements
 
-[Unreleased]: https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.11...HEAD
 [0.1.11]: https://github.com/kircherlab/MPRA_SaturationMutagenesis/releases/tag/v0.1.11
