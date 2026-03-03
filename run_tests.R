@@ -13,14 +13,17 @@ test_that("loadElementList loads data correctly", {
   temp_file <- tempfile()
   writeLines(c("chr22:50964070-50964571", "chr1:100000-100100"), temp_file)
 
-  result <- tryCatch({
-    elements <- read.delim(temp_file, header=FALSE, quote="")
-    colnames(elements) <- c("Element")
-    elements <- elements %>% arrange(Element)
-    elements
-  }, error = function(e) {
-    NULL
-  })
+  result <- tryCatch(
+    {
+      elements <- read.delim(temp_file, header = FALSE, quote = "")
+      colnames(elements) <- c("Element")
+      elements <- elements |> arrange(Element)
+      elements
+    },
+    error = function(e) {
+      NULL
+    }
+  )
 
   expect_is(result, "data.frame")
   expect_gt(nrow(result), 0)
@@ -32,13 +35,16 @@ test_that("loadElementList loads data correctly", {
 # Test 2: Verify app can be sourced without errors
 test_that("app.R sources without errors", {
   # Try to source the app - this checks syntax and basic structure
-  result <- tryCatch({
-    # Parse the file to check for syntax errors
-    parse(file = "app.R")
-    TRUE
-  }, error = function(e) {
-    FALSE
-  })
+  result <- tryCatch(
+    {
+      # Parse the file to check for syntax errors
+      parse(file = "app.R")
+      TRUE
+    },
+    error = function(e) {
+      FALSE
+    }
+  )
 
   expect_true(result)
 })
@@ -55,12 +61,15 @@ test_that("All required packages are available", {
 
 # Test 4: Verify plots.R sources without errors
 test_that("plots.R sources without errors", {
-  result <- tryCatch({
-    parse(file = "plots.R")
-    TRUE
-  }, error = function(e) {
-    FALSE
-  })
+  result <- tryCatch(
+    {
+      parse(file = "plots.R")
+      TRUE
+    },
+    error = function(e) {
+      FALSE
+    }
+  )
 
   expect_true(result)
 })
@@ -80,19 +89,25 @@ test_that("Markdown files exist", {
 # Test 7: Basic data file format validation
 test_that("Data files have expected format", {
   # Check enhancers
-  enhancers <- tryCatch({
-    read.delim("data/enhancers.tsv", header=FALSE, quote="", nrow=1)
-  }, error = function(e) {
-    NULL
-  })
+  enhancers <- tryCatch(
+    {
+      read.delim("data/enhancers.tsv", header = FALSE, quote = "", nrow = 1)
+    },
+    error = function(e) {
+      NULL
+    }
+  )
   expect_false(is.null(enhancers))
 
   # Check promoters
-  promoters <- tryCatch({
-    read.delim("data/promoters.tsv", header=FALSE, quote="", nrow=1)
-  }, error = function(e) {
-    NULL
-  })
+  promoters <- tryCatch(
+    {
+      read.delim("data/promoters.tsv", header = FALSE, quote = "", nrow = 1)
+    },
+    error = function(e) {
+      NULL
+    }
+  )
   expect_false(is.null(promoters))
 })
 

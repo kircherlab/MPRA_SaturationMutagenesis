@@ -23,4 +23,4 @@ repos:
     rev: v0.4.3.9021
     hooks:
       - id: lintr
-        stages: [commit]
+      - id: style-files
