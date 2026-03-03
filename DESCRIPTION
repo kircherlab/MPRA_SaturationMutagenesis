@@ -15,7 +15,8 @@ Imports:
     ggplot2,
     readr,
     stringr,
-    plotly
+    plotly,
+    markdown
 Suggests:
     shinytest,
     testthat

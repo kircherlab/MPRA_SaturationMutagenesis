@@ -13,3 +13,4 @@ dependencies:
   - r-plotly
   - r-shinytest
   - r-testthat
+  - r-markdown
