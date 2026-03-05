@@ -69,10 +69,16 @@ a:focus {
   /* and also underline if link in focus */
 }
 
+/* navigation bar colors(background and font) */
+.navbar-default {
+background-color: #F5F5F5;
+/* same as footer*/
+}
+
 /* navigation bar colors */
 .navbar-default .navbar-nav>li>a {
-  color: #737373;
-  /* slightly darker than before */
+  color: #6b6b6b;
+  /* slightly darker than before contrast 5:1*/
 }
 
 /* Hover- und  */
@@ -80,4 +86,6 @@ a:focus {
 .navbar-default .navbar-nav>li>a:focus {
   color: #28282E;
   /* same color as surroundig */
+  text-decoration: underline;
+ /* and also underline if link in focus */
 }
