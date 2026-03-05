@@ -1,0 +1,26 @@
+# Pre-commit hooks configuration for MPRA_SaturationMutagenesis
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+
+  # Markdown checks
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 1.0.0
+    hooks:
+      - id: mdformat
+        additional_dependencies: ['mdformat-gfm']
+
+  # R linting
+  - repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3.9021
+    hooks:
+      - id: lintr
+      - id: style-files

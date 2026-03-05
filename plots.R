@@ -3,70 +3,111 @@ library(ggplot2)
 library(readr)
 library(stringr)
 
-standard_SatMut_region_style <- function() {
+standard_satmut_region_style <- function() {
   ## styles
-  size.text = 10;
-  size.title = 12;
-  size.line = 1.2;
-  size.geom_line = 1;
-  size.geom_point = 2
-  standard_style <- theme_bw() + theme(plot.title = element_text(size = size.title, face="bold",hjust = 0.5),
-                                       panel.grid.major = element_blank() , panel.grid.minor = element_blank(), panel.border = element_blank(),
-                                       axis.text = element_text(colour = "black",size=size.text), axis.title = element_text(colour = "black",size=size.title), axis.ticks = element_line(colour = "black", linewidth=1), axis.line.y = element_line(color="black", linewidth = size.line), axis.line = element_line(colour = "black", linewidth=size.line),
-                                       legend.key =  element_blank(), legend.text = element_text(size=size.text),
-                                        legend.position="top", legend.box.just = "left",  legend.background = element_rect(fill = "transparent", colour = "transparent"), legend.margin = margin(0, 0, 0, 0),
-                                       legend.key.size = unit(2, 'lines'), legend.title=element_text(size=size.text))+
-    theme(axis.line.x = element_line(color="black", linewidth = size.line))
+  size_text <- 10
+  size_title <- 12
+  size_line <- 1.2
+  size_geom_line <- 1
+  size_geom_point <- 2
+  standard_style <- theme_bw() + theme(
+    plot.title = element_text(size = size_title, face = "bold", hjust = 0.5),
+    panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.border = element_blank(),
+    axis.text = element_text(colour = "black", size = size_text),
+    axis.title = element_text(colour = "black", size = size_title),
+    axis.ticks = element_line(colour = "black", linewidth = 1),
+    axis.line.y = element_line(color = "black", linewidth = size_line),
+    axis.line = element_line(colour = "black", linewidth = size_line),
+    legend.key = element_blank(), legend.text = element_text(size = size_text),
+    legend.position = "right", legend.box.just = "left",
+    legend.background = element_rect(fill = "transparent", colour = "transparent"), legend.margin = margin(0, 0, 0, 0),
+    legend.key.size = unit(2, "lines"), legend.title = element_text(size = size_text)
+  ) +
+    theme(axis.line.x = element_line(color = "black", linewidth = size_line))
 }
 
-modify.filterdata <- function(data,barcodes=10, threshold=1e-5, deletions=TRUE, range=NULL) {
-  data <- data %>% select(Chrom,Pos,Ref,Alt,Barcodes, Coefficient, pValue) %>%
-    filter(Barcodes >= barcodes) %>% 
-    mutate(significance=ifelse(pValue<threshold,"Significant", "Not significant")) %>%
-    mutate(printpos=ifelse(Alt=="A",as.double(Pos)-0.4,ifelse(Alt=="T",as.double(Pos)-0.2, ifelse(Alt=="G",as.double(Pos)+0.0,ifelse(Alt=="C",as.double(Pos)+0.2,as.double(Pos)+0.4)))))
+modify_filterdata <- function(data, barcodes = 10, threshold = 1e-5, deletions = TRUE, range = NULL) {
+  data <- data |>
+    select(Chrom, Pos, Ref, Alt, Barcodes, Coefficient, pValue) |>
+    filter(Barcodes >= barcodes) |>
+    mutate(significance = ifelse(pValue < threshold, "Significant", "Not significant")) |>
+    mutate(printpos = ifelse(Alt == "A", as.double(Pos) - 0.4,
+      ifelse(Alt == "T", as.double(Pos) - 0.2,
+        ifelse(Alt == "G", as.double(Pos) + 0.0, ifelse(Alt == "C", as.double(Pos) + 0.2, as.double(Pos) + 0.4))
+      )
+    ))
   if (!deletions) {
-    data <- data %>% filter(Alt != "-")
+    data <- data |> filter(Alt != "-")
   }
   if (!is.null(range)) {
-    data <- data %>% filter(Pos >= range[1] & Pos <= range[2])
+    data <- data |> filter(Pos >= range[1] & Pos <= range[2])
   }
-  return(data)
+  data
 }
 
 
-defaultColours=c("A"="#0f9447","C"="#235c99","T"="#d42638","G"="#f5b328","-"="#cccccc", 
-                         "Significant"="#005500","Not significant"="red")
-colorblindColors=c("A"="#1B9E77","C"="#7570B3","T"="#D95F02","G"="#E6AB02","-"="#A6761D", 
-                   "Significant"="#66A61E","Not significant"="#E7298A")
-getPlot <- function(data,name, release, colourPalette="default") {
-  colours <- defaultColours
-  
-  if (colourPalette == "colorblind") {
-    colours <- colorblindColors
+default_colours <- c(
+  "A" = "#0f9447", "C" = "#235c99", "T" = "#d42638", "G" = "#f5b328", "-" = "#cccccc",
+  "Significant" = "#005500", "Not significant" = "red"
+)
+colorblind_colours <- c(
+  "A" = "#1B9E77", "C" = "#7570B3", "T" = "#D95F02", "G" = "#E6AB02", "-" = "#A6761D",
+  "Significant" = "#66A61E", "Not significant" = "#E7298A"
+)
+get_plot <- function(data, name, release, colour_palette = "default") {
+  colours <- default_colours
+
+  if (colour_palette == "colorblind") {
+    colours <- colorblind_colours
   }
-  
-  refs <- data$Ref %>% unique()
-  aesRefsValues <- c(ifelse("A" %in% refs,15,c()),ifelse("C" %in% refs,16,c()),ifelse("G" %in% refs,17,c()),ifelse("T" %in% refs,18,c()))
-  aesRefsShape <- c(ifelse("A" %in% refs,0,c()),ifelse("C" %in% refs,1,c()),ifelse("G" %in% refs,2,c()),ifelse("T" %in% refs,5,c()))
-  aesRefsValues <- aesRefsValues[!is.na(aesRefsValues)]
-  aesRefsShape <- aesRefsShape[!is.na(aesRefsShape)]
-  
-  alts <- data$Alt %>% unique()
-  sigs <- data$significance %>% unique()
-  aesSize<-c(rep(7,length(alts)), rep(3,length(sigs)))
-  aesLine<-c(rep(0,length(alts)), rep(1,length(sigs)))
-  aesShape<-c(ifelse("A" %in% alts,15,c()),ifelse("C" %in% alts,16,c()),ifelse("G" %in% alts,17,c()),ifelse("T" %in% alts,18,c()),ifelse("-" %in% alts,19,c()), rep(32,length(sigs)))
-  aesShape <- aesShape[!is.na(aesShape)]
-  altBreaks<-c(as.character(alts), sigs)
-  
-  chr <- data$Chr %>% unique()
-  data <- data %>% select(printpos,Coefficient,significance,Alt,Ref) %>% dplyr::rename(Position=printpos)
+
+  refs <- data$Ref |> unique()
+  aes_refs_values <- c(
+    ifelse("A" %in% refs, 15, c()),
+    ifelse("C" %in% refs, 16, c()), ifelse("G" %in% refs, 17, c()), ifelse("T" %in% refs, 18, c())
+  )
+  aes_refs_shape <- c(
+    ifelse("A" %in% refs, 0, c()),
+    ifelse("C" %in% refs, 1, c()), ifelse("G" %in% refs, 2, c()), ifelse("T" %in% refs, 5, c())
+  )
+  aes_refs_values <- aes_refs_values[!is.na(aes_refs_values)]
+  aes_refs_shape <- aes_refs_shape[!is.na(aes_refs_shape)]
+
+  alts <- data$Alt |> unique()
+  sigs <- data$significance |> unique()
+  aes_size <- c(rep(7, length(alts)), rep(3, length(sigs)))
+  aes_line <- c(rep(0, length(alts)), rep(1, length(sigs)))
+  aes_shape <- c(
+    ifelse("A" %in% alts, 15, NA),
+    ifelse("C" %in% alts, 16, NA),
+    ifelse("G" %in% alts, 17, NA), ifelse("T" %in% alts, 18, NA), ifelse("-" %in% alts, 19, NA), rep(32, length(sigs))
+  )
+  aes_shape <- aes_shape[!is.na(aes_shape)]
+  alt_breaks <- c(as.character(alts), sigs)
+
+  chr <- data$Chr |> unique()
+  data <- data |>
+    select(printpos, Coefficient, significance, Alt, Ref) |>
+    dplyr::rename(Position = printpos)
   p <- ggplot() +
-    geom_segment(data = data, aes(x=Position, xend=Position,y=0,yend=Coefficient, colour=significance), linewidth=0.3, show.legend = TRUE) +
-    geom_point(data= data, aes(x=Position,y=Coefficient,colour=Alt, shape=Ref), size=1, show.legend = TRUE) +
-    scale_shape_manual("",values=aesRefsValues, guide=guide_legend(override.aes = list(size=1, linetype=0, shape=aesRefsShape),nrow=2)) +
-    scale_colour_manual("", values = colours, breaks=altBreaks, labels=altBreaks,
-                        guide= guide_legend(override.aes = list(size=aesSize, linetype=aesLine, shape=aesShape))) +
-    ggtitle(name) + labs(x = paste0("Chromosome ",chr," (",release,")"), y= "Log2 variant effect") + standard_SatMut_region_style()
-  return(p)
+    geom_segment(
+      data = data, aes(
+        x = Position, xend = Position, y = 0,
+        yend = Coefficient, colour = significance
+      ),
+      linewidth = 0.3, show.legend = TRUE
+    ) +
+    geom_point(data = data, aes(x = Position, y = Coefficient, colour = Alt, shape = Ref), size = 1, show.legend = TRUE) +
+    scale_shape_manual("",
+      values = aes_refs_values,
+      guide = guide_legend(override.aes = list(size = 1, linetype = 0, shape = aes_refs_shape), nrow = 2)
+    ) +
+    scale_colour_manual("",
+      values = colours, breaks = alt_breaks, labels = alt_breaks,
+      guide = guide_legend(override.aes = list(size = aes_size, linetype = aes_line, shape = aes_shape))
+    ) +
+    ggtitle(name) +
+    labs(x = paste0("Chromosome ", chr, " (", release, ")"), y = "Log2 variant effect") +
+    standard_satmut_region_style()
+  p
 }
