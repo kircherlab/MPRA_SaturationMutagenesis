@@ -51,59 +51,61 @@ for (name in elements$Element) {
 
 
 # Define UI for application that draws a histogram
-ui <- fluidRow(
-  id = "canvas",
-  column(
-    12,
-    navbarPage("MPRA-Data",
-      theme = "mpra.css",
-      tabPanel(
-        "About",
-        h1("MPRA data access portal"),
-        hr(),
-        includeMarkdown("mrkdown/about.md")
-      ),
-      tabPanel(
-        "Promoter",
-        tabsetPanel(type = "tabs", id = "promoterNavigation")
-      ),
-      tabPanel(
-        "Enhancer",
-        tabsetPanel(type = "tabs", id = "enhancerNavigation")
-      ),
-      tabPanel(
-        "Download",
-        fluidPage(
-          title = "Download elements",
-          h2("Download elements"),
-
-          # Application title
+ui <- tags$html(
+  lang = "en",
+  fluidRow(
+    id = "canvas",
+    column(
+      12,
+      navbarPage("MPRA-Data",
+        theme = "mpra.css",
+        tabPanel(
+          "About",
+          h1("MPRA data access portal"),
           hr(),
-          fluidRow(
-            column(4,
-              id = "download_panel",
-              selectInput("download_reference_all", "Genome release:", c("GRCh37", "GRCh38")),
-              selectInput("download_promoter", "Promoters:", promoters, multiple = TRUE, selectize = TRUE),
-              selectInput("download_enhancer", "Enhancers:", enhancers, multiple = TRUE, selectize = TRUE),
-              selectInput("download_format_all", "Format:", c(".tsv", ".csv")),
-              downloadButton("downloadData_selected", "Download Selected Elements"),
-              downloadButton("downloadData_all", "Download All Elements")
-            ),
-            column(8,
-              id = "file_format",
-              includeMarkdown("mrkdown/file_format.md")
+          includeMarkdown("mrkdown/about.md")
+        ),
+        tabPanel(
+          "Promoter",
+          tabsetPanel(type = "tabs", id = "promoterNavigation")
+        ),
+        tabPanel(
+          "Enhancer",
+          tabsetPanel(type = "tabs", id = "enhancerNavigation")
+        ),
+        tabPanel(
+          "Download",
+          fluidPage(
+            title = "Download elements",
+            h2("Download elements"),
+
+            # Application title
+            hr(),
+            fluidRow(
+              column(4,
+                id = "download_panel",
+                selectInput("download_reference_all", "Genome release:", c("GRCh37", "GRCh38")),
+                selectInput("download_promoter", "Promoters:", promoters, multiple = TRUE, selectize = TRUE),
+                selectInput("download_enhancer", "Enhancers:", enhancers, multiple = TRUE, selectize = TRUE),
+                selectInput("download_format_all", "Format:", c(".tsv", ".csv")),
+                downloadButton("downloadData_selected", "Download Selected Elements"),
+                downloadButton("downloadData_all", "Download All Elements")
+              ),
+              column(8,
+                id = "file_format",
+                includeMarkdown("mrkdown/file_format.md")
+              )
             )
           )
         )
       )
+    ),
+    column(12,
+      id = "footer",
+      HTML('<a href="https://www.washington.edu/online/terms">Terms and Conditions</a> and the <a href="https://www.washington.edu/online/privacy">Online Privacy Statement</a> of the University of Washington apply.') # nolint: line_length_linter.
     )
-  ),
-  column(12,
-    id = "footer",
-    HTML('<a href="https://www.washington.edu/online/terms">Terms and Conditions</a> and the <a href="https://www.washington.edu/online/privacy">Online Privacy Statement</a> of the University of Washington apply.') # nolint: line_length_linter.
   )
 )
-
 
 # Define server logic required for this website
 server <- function(input, output, session) { # nolint: cyclocomp_linter.
