@@ -49,7 +49,7 @@ R packages:
 - stringr version 1.5.1
 - plotly version 4.10.4
 
-You can install also via mamba/conda using: `mamba env create -f environment.yaml -n mpra-data-access-portal`
+You can install also via conda using: `conda env create -f environment.yaml -n mpra-data-access-portal`
 
 Get the latest version via version release on github:
 https://github.com/kircherlab/MPRA_SaturationMutagenesis/archive/v0.1.11.tar.gz
