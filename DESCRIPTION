@@ -1,6 +1,6 @@
 Package: saturationMutagenesisApp
 Title: MPRA Saturation Mutagenesis Data Access Portal
-Version: 0.1.14
+Version: 0.1.15
 Description: A Shiny application for accessing MPRA saturation mutagenesis data.
 Author: Max Schubach
 Maintainer: Max Schubach <max.schubach@bih-charite.de>
