@@ -1,9 +1,8 @@
 ## [0.1.15](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.14...v0.1.15) (2026-03-06)
 
-
 ### Bug Fixes
 
-* enhance footer link styles for better visibility ([#28](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/28)) ([36a45fc](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/36a45fc04f4a8785821a032b2e933a25359693ed))
+- enhance footer link styles for better visibility ([#28](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/28)) ([36a45fc](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/36a45fc04f4a8785821a032b2e933a25359693ed))
 
 ## [0.1.14](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.13...v0.1.14) (2026-03-05)
 
