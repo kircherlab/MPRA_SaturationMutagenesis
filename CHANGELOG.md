@@ -1,3 +1,9 @@
+## [0.1.16](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.15...v0.1.16) (2026-03-16)
+
+### Bug Fixes
+
+- enhance UI elements and improve accessibility in app layout and styles ([#32](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/32)) ([9b145d8](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/9b145d8aad52fbd27316ca2d83800b7c49128d58))
+
 ## [0.1.15](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.14...v0.1.15) (2026-03-06)
 
 ### Bug Fixes
