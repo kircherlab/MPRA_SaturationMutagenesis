@@ -46,6 +46,18 @@ tr:hover {
   text-align: center;
 }
 
+/* footer links */
+#footer a {
+  color: #1058B0;
+  /* darker as links in the main body to compensate the darker background  */
+}
+
+#footer a:hover,
+#footer a:focus {
+  color: #0D3F80;
+  text-decoration: underline;
+}
+
 #canvas {
   height: 100%;
 }
