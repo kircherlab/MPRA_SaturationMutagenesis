@@ -1,8 +1,8 @@
-We performed saturation mutagenesis in conjunction with massively parallel reporter assays (MPRAs) on 21 regulatory elements, including 20 commonly studied, disease-relevant promoter and enhancer sequences from the literature, and one ultraconserved enhancer (UC88). For the former, we focused primarily on regulatory sequences in which specific mutations are known to cause disease, both for their clinical relevance and to provide for positive control variants. Selected elements were limited up to 600 base pairs (bp) for technical reasons related to the mapping of variants to barcodes by subassembly. In addition, we selected only sequences where cell line-based reporter assays were previously established.
+We performed saturation mutagenesis in conjunction with massively parallel reporter assays (MPRAs) on 21 regulatory elements, including 20 commonly studied, disease-relevant promoter and enhancer sequences from the literature, and one ultra conserved enhancer (UC88). For the former, we focused primarily on regulatory sequences in which specific mutations are known to cause disease, both for their clinical relevance and to provide for positive control variants. Selected elements were limited up to 600 base pairs (bp) for technical reasons related to the mapping of variants to barcodes by subassembly. In addition, we selected only sequences where cell line-based reporter assays were previously established.
 
-### The regulatory elements
+## The regulatory elements
 
-#### Promoters
+### Promoters
 
 | Name       | Genomic coordinates (GRCh37) | Genomic coordinates (GRCh38) | Transcript  | Associated Phenotype                        | Luciferase vector | MPRA vector | Cell line       | Transf. time (hr) | Fold change (Wild type) | Fold Change (MPRA) | Construct size (bp) |
 | ---------- | ---------------------------- | ---------------------------- | ----------- | ------------------------------------------- | ----------------- | ----------- | --------------- | ----------------- | ----------------------- | ------------------ | ------------------- |
@@ -17,7 +17,7 @@ We performed saturation mutagenesis in conjunction with massively parallel repor
 | PKLR       | chr1:155,271,186-155,271,655 | chr1:155,301,395-155,301,864 | NM_000298.5 | Pyruvate kinase deficiency                  | pGL4.11b          | pGL4.11c    | K562            | 48                | 29.4                    | 9.6                | 470                 |
 | TERT       | chr5:1,295,104-1,295,362     | chr5:1,294,989-1,295,247     | NM_198253.2 | Various types of cancer                     | pGL4.11b          | pGL4.11b    | HEK293T, SF7996 | 24                | 231.8,5.2               | 148.2, 2.7         | 259                 |
 
-#### Enhancers
+### Enhancers
 
 | Name             | Genomic coordinates (GRCh37)  | Genomic coordinates (GRCh38)  | Associated Phenotype                                               | Luciferase vector  | MPRA vector | Cell line                           | Transf. time (hr)              | Fold change (Wild type) | Fold Change (MPRA) | Construct size (bp) |
 | ---------------- | ----------------------------- | ----------------------------- | ------------------------------------------------------------------ | ------------------ | ----------- | ----------------------------------- | ------------------------------ | ----------------------- | ------------------ | ------------------- |
@@ -33,9 +33,9 @@ We performed saturation mutagenesis in conjunction with massively parallel repor
 | ZFAND3           | chr6:37,775,275-37,775,853    | chr6:37,807,499-37,808,077    | Type 2 diabetes                                                    | pGL4.23            | pGL4.23c    | MIN6                                | 24                             | 14.3                    | 7.3                | 579                 |
 | ZRS              | chr7:156,583,813-156,584,297  | chr7:156,791,119-156,791,603  | Limb malformations                                                 | TATA-pGL4m (EV087) | pGL4Zc      | NIH/3T3 (with HOXD13/ HOXD13+HAND2) | 24                             | 04.02.2002              | 3.7/2.6            | 485                 |
 
-### Data usage
+## Data usage
 
-We made our data available prior to publication in line with [Fort Lauderdale principle](https://www.genome.gov/pages/research/wellcomereport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. Furter, we reserved the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of these data.
+We made our data available prior to publication in line with [Fort Lauderdale principle](https://www.genome.gov/Pages/Research/WellcomeReport0303.pdf), allowing others to use the data but allowing the data producers to make the first presentations and to publish the first paper with global analyses of the data. Furter, we reserved the right to publish the first analysis of the differences seen in the TERT knock-down experiments and alternative cell-type experiments. Studies that do not overlap with these intentions may be submitted for publication at any time, but must appropriately cite the data source. After publication of the data, the first publication of the data producers should be cited for any use of these data.
 
 The manuscript describing this data set, global analysis and TERT knock-down experiments was published on Aug 8, 2019:
 
@@ -43,7 +43,7 @@ Kircher M, Xiong C, Martin B, Schubach M, Inoue F, Bell RJA, Costello JF, Shendu
 
 NCBI GEO and raw data submission are available under accession [GSE126550](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126550).
 
-### Contact
+## Contact
 
 For general information and specific questions about the experiment contact [Nadav Ahituv](mailto:nadav.ahituv@ucsf.edu). For questions on the data analysis please contact [Martin Kircher](mailto:martin.kircher@bih-charite.de). About the website please contact [Max Schubach](mailto:max.schubach@bih-charite.de) or refer directly to the [github repository](https://github.com/kircherlab/MPRA_SaturationMutagenesis) of this website.
 

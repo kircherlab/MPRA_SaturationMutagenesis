@@ -42,13 +42,15 @@ tr:hover {
   border-top-color: rgb(227, 227, 227);
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: rgb(245, 245, 245);
+  background-color: #F5F5F5;
   text-align: center;
+  color: #1A1A1E;
+  /* body text color for footer */
 }
 
 /* footer links */
 #footer a {
-  color: #1058B0;
+  color: #0071A0;
   /* darker as links in the main body to compensate the darker background  */
 }
 
