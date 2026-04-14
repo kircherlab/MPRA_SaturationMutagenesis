@@ -1,3 +1,9 @@
+## [0.1.17](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.16...v0.1.17) (2026-04-14)
+
+### Features
+
+- further tweaks on accessibility ([#34](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/34)) ([06d4ade](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/06d4ade095bec5d85e70f6275ee35fd8b05ee613))
+
 ## [0.1.16](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.15...v0.1.16) (2026-03-16)
 
 ### Bug Fixes
