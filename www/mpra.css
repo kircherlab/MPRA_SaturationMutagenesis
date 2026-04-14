@@ -60,18 +60,6 @@ tr:hover {
   text-decoration: underline;
 }
 
-/* footer links */
-#footer a {
-  color: #1058B0;
-  /* darker as links in the main body to compensate the darker background  */
-}
-
-#footer a:hover,
-#footer a:focus {
-  color: #0D3F80;
-  text-decoration: underline;
-}
-
 #canvas {
   height: 100%;
 }
@@ -97,8 +85,8 @@ a:focus {
 
 /* navigation bar colors(background and font) */
 .navbar-default {
-background-color: #F5F5F5;
-/* same as footer*/
+  background-color: #F5F5F5;
+  /* same as footer*/
 }
 
 /* navigation bar colors */
@@ -113,5 +101,5 @@ background-color: #F5F5F5;
   color: #28282E;
   /* same color as surroundig */
   text-decoration: underline;
- /* and also underline if link in focus */
+  /* and also underline if link in focus */
 }
