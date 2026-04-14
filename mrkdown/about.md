@@ -51,6 +51,6 @@ For general information and specific questions about the experiment contact [Nad
 
 <img src="logos/bih.png" height="75" alt="Berlin Institute of Health Logo.">
 <img src="logos/charite.png" height="75" alt="Charite Berlin Logo.">
-<img src="logos/ucsf.png" height="75" alt="University of Washington Logo.">
+<img src="logos/ucsf.png" height="75" alt="University of California San Francisco Logo.">
 <img src="logos/uw.png" height="75" alt="University of Washington Logo.">
 </p>
