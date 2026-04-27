@@ -1,3 +1,9 @@
+## [0.1.18](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.17...v0.1.18) (2026-04-27)
+
+### Features
+
+- improve visualization and heading structure ([#36](https://github.com/kircherlab/MPRA_SaturationMutagenesis/issues/36)) ([61a2c18](https://github.com/kircherlab/MPRA_SaturationMutagenesis/commit/61a2c1846d9585bb9cce69b725ff6fd7e67045c9))
+
 ## [0.1.17](https://github.com/kircherlab/MPRA_SaturationMutagenesis/compare/v0.1.16...v0.1.17) (2026-04-14)
 
 ### Features
