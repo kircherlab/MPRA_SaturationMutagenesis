@@ -132,7 +132,7 @@ server <- function(input, output, session) { # nolint: cyclocomp_linter.
       name,
       fluidPage(
         # Application title
-        headerPanel(name),
+        tags$h2(name),
         # mainPanel(
         sidebarLayout(
           # User inputs
