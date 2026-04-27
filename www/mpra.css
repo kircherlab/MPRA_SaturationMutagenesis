@@ -88,6 +88,10 @@ a:focus {
   background-color: #F5F5F5;
   /* same as footer*/
 }
+.navbar-default .navbar-brand {
+  color: #000000;
+  /* slightly darker than before contrast 5:1*/
+}
 
 /* navigation bar colors */
 .navbar-default .navbar-nav>li>a {
