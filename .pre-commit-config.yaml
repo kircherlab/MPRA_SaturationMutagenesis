@@ -20,7 +20,7 @@ repos:
 
   # R linting
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9021
+    rev: v0.4.3.9023
     hooks:
       - id: lintr
       - id: style-files
